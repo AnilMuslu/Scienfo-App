@@ -29,23 +29,10 @@ class ScienfoContentPage1 extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          // Image URLs have been loaded. Create an Image widget for each URL.
-          List<String> imageUrls = snapshot.data!;
           return Scaffold(
             backgroundColor: const Color(0xffffffff),
             body: Stack(
               children: <Widget>[
-                // Add this to display the images:
-                ListView.builder(
-                  itemCount: imageUrls.length,
-                  itemBuilder: (context, index) {
-                    return Image.network(
-                      imageUrls[index],
-                      fit: BoxFit.fill,
-                    );
-                  },
-                ),
-                
                 Pinned.fromPins(
                   Pin(size: 7.0, end: 20.0),
                   Pin(size: 34.0, start: 53.0),
@@ -168,7 +155,6 @@ class ScienfoContentPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Add the rest of your widgets here...
               ],
             ),
           );
