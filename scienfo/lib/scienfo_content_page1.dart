@@ -36,7 +36,8 @@ class ScienfoContentPage1 extends StatelessWidget {
             body: Stack(
               children: <Widget>[
                 // Add this to display the images:
-                ListView.builder(
+                PageView.builder(
+                  scrollDirection: Axis.vertical,
                   itemCount: imageUrls.length,
                   itemBuilder: (context, index) {
                     return Image.network(
