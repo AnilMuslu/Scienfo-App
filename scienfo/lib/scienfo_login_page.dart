@@ -5,13 +5,15 @@ import './password_input.dart';
 import './scienfo_logo.dart';
 import './welcome_text.dart';
 import './sign_in_button.dart';
-import './scienfo_content_page1.dart';
-import 'package:adobe_xd/page_link.dart';
 
 class ScienfoLoginPage extends StatelessWidget {
   ScienfoLoginPage({
     Key? key,
   }) : super(key: key);
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class ScienfoLoginPage extends StatelessWidget {
             Pin(size: 113.0, end: 49.0),
             Pin(size: 19.0, end: 84.0),
             child: Text(
-              'Forgot Password?',
+              'Reset Password',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 14,
@@ -38,7 +40,7 @@ class ScienfoLoginPage extends StatelessWidget {
             Pin(size: 176.0, start: 40.0),
             Pin(size: 19.0, middle: 0.5536),
             child: Text(
-              'Please login to your account',
+              'Login to your account',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 14,
@@ -55,14 +57,14 @@ class ScienfoLoginPage extends StatelessWidget {
             Pin(size: 42.9, middle: 0.6264),
             child:
                 // Adobe XD layer: 'Email_input' (component)
-                EmailInput(),
+                EmailInput(emailController: emailController),
           ),
           Pinned.fromPins(
             Pin(start: 37.0, end: 50.7),
             Pin(size: 43.0, middle: 0.7339),
             child:
                 // Adobe XD layer: 'Password_input' (component)
-                PasswordInput(),
+                PasswordInput(passwordController: passwordController),
           ),
           Pinned.fromPins(
             Pin(start: 76.0, end: 76.0),
@@ -80,17 +82,11 @@ class ScienfoLoginPage extends StatelessWidget {
           ),
           Pinned.fromPins(
             Pin(start: 37.0, end: 47.0),
-            Pin(size: 50.0, end: 129.0),
-            child:
-                // Adobe XD layer: 'SignIn_button' (component)
-                PageLink(
-              links: [
-                PageLinkInfo(
-                  pageBuilder: () => ScienfoContentPage1(),
-                ),
-              ],
-              child: SignInButton(),
-            ),
+            Pin(size: 50.0, end: 70.0),
+            child: SignInButton(
+                emailController: emailController,
+                passwordController:  passwordController,
+              )
           ),
         ],
       ),

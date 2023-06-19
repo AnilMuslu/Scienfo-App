@@ -3,27 +3,31 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PasswordInput extends StatelessWidget {
-  PasswordInput({
-    Key? key,
-  }) : super(key: key);
+  final TextEditingController passwordController;
+
+  PasswordInput({Key? key, required this.passwordController}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         Pinned.fromPins(
-          Pin(size: 62.0, start: 0.5),
-          Pin(size: 19.0, start: 0.0),
-          child: Text(
-            'Password',
+          Pin(size:0),
+          Pin(size: 50, start: 0.0),
+          child: TextField(
+            controller: passwordController,
+            obscureText: true,    // make password field obfuscated
             style: TextStyle(
-              fontFamily: 'Roboto',
-              fontSize: 14,
-              color: const Color(0xffffffff),
-              height: 1.2142857142857142,
+              fontFamily: 'Source Sans Pro',
+              fontSize: 18,
+              color: Color(0xffffffff),
+              height: 0.85,
             ),
-            textHeightBehavior:
-                TextHeightBehavior(applyHeightToFirstAscent: false),
-            softWrap: false,
+            decoration: InputDecoration(
+              hintText: "Password",
+              hintStyle: TextStyle(
+                color: Colors.white
+              )
+              ),
           ),
         ),
         Pinned.fromPins(
@@ -37,6 +41,8 @@ class PasswordInput extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
+        
+        /*
         Pinned.fromPins(
           Pin(size: 62.0, start: 0.5),
           Pin(size: 28.0, end: 0.0),
@@ -53,6 +59,7 @@ class PasswordInput extends StatelessWidget {
             softWrap: false,
           ),
         ),
+        */
       ],
     );
   }

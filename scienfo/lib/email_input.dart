@@ -3,27 +3,30 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class EmailInput extends StatelessWidget {
-  EmailInput({
-    Key? key,
-  }) : super(key: key);
+  final TextEditingController emailController;
+
+  EmailInput({Key? key, required this.emailController}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         Pinned.fromPins(
-          Pin(size: 35.0, start: 0.5),
-          Pin(size: 19.0, start: 0.0),
-          child: Text(
-            'Email',
+          Pin(size: 0),
+          Pin(size: 50.0, start: 0.0),
+          child: TextField(
+            controller: emailController,
             style: TextStyle(
               fontFamily: 'Roboto',
-              fontSize: 14,
-              color: const Color(0xffffffff),
+              fontSize: 18,
+              color: Colors.white,
               height: 1.2142857142857142,
             ),
-            textHeightBehavior:
-                TextHeightBehavior(applyHeightToFirstAscent: false),
-            softWrap: false,
+            decoration: InputDecoration(
+              hintText: 'Enter email address',
+              hintStyle: TextStyle(
+                color: Colors.white
+              )
+            ),
           ),
         ),
         Pinned.fromPins(
@@ -37,22 +40,7 @@ class EmailInput extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        Pinned.fromPins(
-          Pin(size: 150.0, start: 0.5),
-          Pin(size: 19.0, end: 3.9),
-          child: Text(
-            'anillmusluu@gmail.com',
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontSize: 14,
-              color: const Color(0xffffffff),
-              height: 1.2142857142857142,
-            ),
-            textHeightBehavior:
-                TextHeightBehavior(applyHeightToFirstAscent: false),
-            softWrap: false,
-          ),
-        ),
+        
       ],
     );
   }

@@ -24,7 +24,7 @@ class RegisterNowButton extends StatelessWidget {
         ),
         Center(
           child: SizedBox(
-            width: 114.0,
+            width: 122.0,
             height: 21.0,
             child: Text(
               'REGISTER NOW',

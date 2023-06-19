@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class RegisterButton extends StatelessWidget {
-  RegisterButton({
+class FirstLoginButton extends StatelessWidget {
+  FirstLoginButton({
     Key? key,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        // Adobe XD layer: 'Register_button' (group)
+        // First Login Button in opening page (scienfo_register_page) as a clone of login as guest button
         Stack(
           children: <Widget>[
             Container(
@@ -28,12 +28,12 @@ class RegisterButton extends StatelessWidget {
           ],
         ),
         Align(
-          alignment: Alignment(-0.006, -0.027),
+          alignment: Alignment(-0.008, -0.027),
           child: SizedBox(
-            width: 120.0,
+            width: 122.0,
             height: 21.0,
             child: Text(
-              'REGISTER',
+              'LOGIN',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 16,

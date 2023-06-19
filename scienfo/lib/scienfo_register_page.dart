@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:scienfo/first_login_button.dart';
+import 'package:scienfo/scienfo_login_page.dart';
 import './sign_in_button.dart';
 import './register_button.dart';
 import './scienfo_register_now_page.dart';
@@ -13,6 +15,10 @@ class ScienfoRegisterPage extends StatelessWidget {
   ScienfoRegisterPage({
     Key? key,
   }) : super(key: key);
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +31,16 @@ class ScienfoRegisterPage extends StatelessWidget {
             child: Stack(
               children: <Widget>[
                 Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(size: 50.0, end: 0.0),
-                  child:
-                      // Adobe XD layer: 'SignIn_button' (component)
-                      SignInButton(),
-                ),
+                    Pin(start: 0.0, end: 0.0), Pin(size: 50.0, end: 0.0),
+                    child: PageLink(
+                      links: [
+                        PageLinkInfo(
+                          pageBuilder:  () => ScienfoLoginPage()
+                        )
+                      ],
+                      child: FirstLoginButton(),
+                    )
+                    ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 50.0, middle: 0.5032),
@@ -66,7 +76,7 @@ class ScienfoRegisterPage extends StatelessWidget {
             Pin(size: 273.0, start: 40.0),
             Pin(size: 19.0, middle: 0.5603),
             child: Text(
-              'Please login to your account or register now',
+              'Please login to your account or register',
               style: TextStyle(
                 fontFamily: 'Roboto',
                 fontSize: 14,

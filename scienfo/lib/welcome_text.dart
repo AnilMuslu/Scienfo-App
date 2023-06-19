@@ -13,7 +13,7 @@ class WelcomeText extends StatelessWidget {
           Pin(start: 3.0, end: 0.0),
           Pin(size: 40.0, start: 0.0),
           child: Text(
-            'Welcome to,',
+            'Welcome to',
             style: TextStyle(
               fontFamily: 'Roboto',
               fontSize: 31,
