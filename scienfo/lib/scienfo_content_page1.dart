@@ -1,53 +1,78 @@
-import 'package:flutter/material.dart';
+import 'package:adobe_xd/adobe_xd.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:flutter/material.dart';
+import 'package:scienfo/label_text_field.dart';
+import 'package:scienfo/option_icon.dart';
+import 'package:scienfo/profile_icon_button.dart';
+import 'package:scienfo/scienfo_profile_page.dart';
+import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
-import './option_icon.dart';
-import './label_text_field.dart';
-import './blog_button.dart';
-import './like_button.dart';
-import './search_icon_button.dart';
-import './scienfo_search_page.dart';
-import 'package:adobe_xd/page_link.dart';
-import './profile_icon_button.dart';
-import './scienfo_profile_page.dart';
-import './home_icon_button.dart';
 
-class ScienfoContentPage1 extends StatelessWidget {
+import 'blog_button.dart';
+import 'home_icon_button.dart';
+import 'like_button.dart';
+import 'scienfo_search_page.dart';
+
+class ScienfoContentPage1 extends StatefulWidget {
+  ScienfoContentPage1({Key? key}) : super(key: key);
+
+  @override
+  _ScienfoContentPage1State createState() => _ScienfoContentPage1State();
+}
+
+class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
   final FirebaseService firebaseService = FirebaseService();
 
-  ScienfoContentPage1({
-    Key? key,
-  }) : super(key: key);
+  @override
+  void initState() {
+    firebaseService.getImageUrlsStream().listen((data) {
+      print("DataReceived: $data");
+      for (var url in data) {
+        print("URL: $url");
+      }
+    }, onError: (err) {
+      print("Received error: $err");
+    }, onDone: () {
+      print("Done");
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<String>>(
-      future: firebaseService.getImageUrls(),
+    return StreamBuilder<List<String>>(
+      stream: firebaseService.getImageUrlsStream(),
       builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
+          print("StreamBuilder is in waiting state");
+
           return Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
+          print("StreamBuilder encountered an error: ${snapshot.error}");
+
           return Text('Error: ${snapshot.error}');
-        } else {
-          // Image URLs have been loaded. Create an Image widget for each URL.
+        } else if (snapshot.connectionState == ConnectionState.active) {
+          print("StreamBuilder is active");
+
           List<String> imageUrls = snapshot.data!;
+          print(imageUrls);
           return Scaffold(
-            backgroundColor: const Color(0xffffffff),
-            body: Stack(
-              children: <Widget>[
-                // Add this to display the images:
-                PageView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: imageUrls.length,
-                  itemBuilder: (context, index) {
-                    return Image.network(
-                      imageUrls[index],
-                      fit: BoxFit.fill,
-                    );
-                  },
-                ),
-                
-                Pinned.fromPins(
+              backgroundColor: const Color(0xffffffff),
+              body: Stack(
+                children: <Widget>[
+                  PageView.builder(
+                    scrollDirection: Axis.vertical,
+                    physics: BouncingScrollPhysics(),
+                    itemCount: imageUrls.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Image.network(
+                        imageUrls[index],
+                        fit: BoxFit.fill,
+                      );
+                    },
+                  ),
+                  Pinned.fromPins(
                   Pin(size: 7.0, end: 20.0),
                   Pin(size: 34.0, start: 53.0),
                   child:
@@ -66,7 +91,8 @@ class ScienfoContentPage1 extends StatelessWidget {
                           height: 21.0,
                           child:
                               // Adobe XD layer: 'Label_textField' (component)
-                              LabelTextField(),
+                              
+                              LabelTextField(documentId: 'your_image_id')
                         ),
                       ),
                       Align(
@@ -169,10 +195,11 @@ class ScienfoContentPage1 extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Add the rest of your widgets here...
-              ],
-            ),
-          );
+                ],
+              ));
+        } else {
+          print("StreamBuilder is in an unknown state");
+          return Text('Unknown state');
         }
       },
     );

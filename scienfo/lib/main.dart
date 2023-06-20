@@ -6,7 +6,7 @@ import 'package:scienfo/scienfo_register_page.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  print("smth");
   runApp(const MyApp());
 }
 

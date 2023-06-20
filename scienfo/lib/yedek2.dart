@@ -12,44 +12,17 @@ import './profile_icon_button.dart';
 import './scienfo_profile_page.dart';
 import './home_icon_button.dart';
 
-class ScienfoContentPage1 extends StatefulWidget {
-  ScienfoContentPage1({Key? key}) : super(key: key);
-
-  @override
-  _ScienfoContentPage1State createState() => _ScienfoContentPage1State();
-}
-
-class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
+class ScienfoContentPage1 extends StatelessWidget {
   final FirebaseService firebaseService = FirebaseService();
-  late PageController _pageController;
-  int _currentIndex = 0;
-  List<String>? _cachedImageUrls;
 
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController()
-      ..addListener(() {
-        int next = _pageController.page!.round();
-        if (_currentIndex != next) {
-          print('PageController: Changing current index to $next');
-          setState(() {
-            _currentIndex = next;
-          });
-        }
-      });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+  ScienfoContentPage1({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<String>>(
-      stream: firebaseService.getImageUrlsStream(),
+    return FutureBuilder<List<String>>(
+      future: firebaseService.getImageUrls(),
       builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -64,7 +37,6 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
               children: <Widget>[
                 // Add this to display the images:
                 PageView.builder(
-                  controller: _pageController,
                   scrollDirection: Axis.vertical,
                   itemCount: imageUrls.length,
                   itemBuilder: (context, index) {
@@ -74,7 +46,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                     );
                   },
                 ),
-
+                
                 Pinned.fromPins(
                   Pin(size: 7.0, end: 20.0),
                   Pin(size: 34.0, start: 53.0),
@@ -92,11 +64,9 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                         child: SizedBox(
                           width: 269.0,
                           height: 21.0,
-                          child: LabelTextField(
-                              imageName: imageUrls[_currentIndex]
-                                  .split('/')
-                                  .last), // here
-                          // Adobe XD layer: 'Label_textField' (component)
+                          child:
+                              // Adobe XD layer: 'Label_textField' (component)
+                              LabelTextField(),
                         ),
                       ),
                       Align(
