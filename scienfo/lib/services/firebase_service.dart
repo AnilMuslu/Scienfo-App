@@ -23,7 +23,8 @@ class FirebaseService {
         // return a map containing both url and id
         return {
           "url": doc["url"].toString(),
-          "id": doc.id
+          "id": doc.id,
+          "category": doc["category"]
         };
       }).toList();
     });

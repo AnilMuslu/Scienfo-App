@@ -1,3 +1,7 @@
+//import 'dart:html';
+
+//import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart';
 import 'package:adobe_xd/adobe_xd.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +29,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
 
   @override
   void initState() {
-    firebaseService.getImageUrlsStream().listen((data) {
+    firebaseService.getImageUrlsStream2().listen((data) {
       print("DataReceived: $data");
       for (var url in data) {
         //print("URL: $url");
@@ -41,9 +45,10 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<String>>(
-      stream: firebaseService.getImageUrlsStream(),
-      builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+    return StreamBuilder<List<Map<String, dynamic>>>(
+      stream: firebaseService.getImageUrlsStream2(),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           print("StreamBuilder is in waiting state");
 
@@ -55,7 +60,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
         } else if (snapshot.connectionState == ConnectionState.active) {
           print("StreamBuilder is active");
 
-          List<String> imageUrls = snapshot.data!;
+          List<Map<String, dynamic>> imageData = snapshot.data!;
           print("SNAPSHOT: $snapshot");
           return Scaffold(
               backgroundColor: const Color(0xffffffff),
@@ -64,138 +69,136 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                   PageView.builder(
                     scrollDirection: Axis.vertical,
                     //physics: BouncingScrollPhysics(),
-                    itemCount: imageUrls.length,
+                    itemCount: imageData.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Image.network(
-                        imageUrls[index],
-                        fit: BoxFit.fill,
-                        
-                      );
+                      String url = imageData[index]["url"];
+                      String id = imageData[index]["id"];
+
+                      return Image.network(url, fit: BoxFit.fill);
                     },
                   ),
                   Pinned.fromPins(
-                  Pin(size: 7.0, end: 20.0),
-                  Pin(size: 34.0, start: 53.0),
-                  child:
-                      // Adobe XD layer: 'Option icon' (component)
-                      OptionIcon(),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 23.0, end: 29.0),
-                  Pin(size: 114.0, end: 94.0),
-                  child: Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: SizedBox(
-                          width: 269.0,
-                          height: 21.0,
-                          child:
-                              // Adobe XD layer: 'Label_textField' (component)
-                              
-                              LabelTextField(documentId: 'your_image_id')
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: SizedBox(
-                          width: 40.0,
-                          height: 40.0,
-                          child:
-                              // Adobe XD layer: 'Blog_button' (component)
-                              BlogButton(),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: SizedBox(
-                          width: 40.0,
-                          height: 40.0,
-                          child:
-                              // Adobe XD layer: 'Like_button' (component)
-                              LikeButton(),
-                        ),
-                      ),
-                    ],
+                    Pin(size: 7.0, end: 20.0),
+                    Pin(size: 34.0, start: 53.0),
+                    child:
+                        // Adobe XD layer: 'Option icon' (component)
+                        OptionIcon(),
                   ),
-                ),
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(size: 60.5, end: 0.0),
-                  child:
-                      // Adobe XD layer: 'FooterButtons' (group)
-                      Stack(
-                    children: <Widget>[
-                      SizedBox(
-                        width: 412.0,
-                        height: 60.0,
-                        child: Stack(
-                          children: <Widget>[
-                            Stack(
-                              children: <Widget>[
-                                SizedBox(
-                                  width: 412.0,
-                                  height: 60.0,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Container(
-                                        width: 412.0,
-                                        height: 60.0,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0x66fafafa),
-                                          borderRadius:
-                                              BorderRadius.circular(72.0),
+                  Pinned.fromPins(
+                    Pin(start: 23.0, end: 29.0),
+                    Pin(size: 114.0, end: 94.0),
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.bottomLeft,
+                          child: SizedBox(
+                              width: 269.0,
+                              height: 21.0,
+                              child:
+                                  // Adobe XD layer: 'Label_textField' (component)
+
+                                  LabelTextField(documentId: imageData[0]["id"])),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: SizedBox(
+                            width: 40.0,
+                            height: 40.0,
+                            child:
+                                // Adobe XD layer: 'Blog_button' (component)
+                                BlogButton(),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: SizedBox(
+                            width: 40.0,
+                            height: 40.0,
+                            child:
+                                // Adobe XD layer: 'Like_button' (component)
+                                LikeButton(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Pinned.fromPins(
+                    Pin(start: 0.0, end: 0.0),
+                    Pin(size: 60.5, end: 0.0),
+                    child:
+                        // Adobe XD layer: 'FooterButtons' (group)
+                        Stack(
+                      children: <Widget>[
+                        SizedBox(
+                          width: 412.0,
+                          height: 60.0,
+                          child: Stack(
+                            children: <Widget>[
+                              Stack(
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 412.0,
+                                    height: 60.0,
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Container(
+                                          width: 412.0,
+                                          height: 60.0,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0x66fafafa),
+                                            borderRadius:
+                                                BorderRadius.circular(72.0),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment(0.006, -0.043),
+                          child: SizedBox(
+                            width: 25.0,
+                            height: 31.0,
+                            child:
+                                // Adobe XD layer: 'SearchIcon_button' (component)
+                                PageLink(
+                              links: [
+                                PageLinkInfo(
+                                  pageBuilder: () => ScienfoSearchPage(),
                                 ),
                               ],
+                              child: SearchIconButton(),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment(0.006, -0.043),
-                        child: SizedBox(
-                          width: 25.0,
-                          height: 31.0,
+                        Pinned.fromPins(
+                          Pin(size: 25.0, end: 46.0),
+                          Pin(size: 30.0, middle: 0.5078),
                           child:
-                              // Adobe XD layer: 'SearchIcon_button' (component)
+                              // Adobe XD layer: 'ProfileIcon_button' (component)
                               PageLink(
                             links: [
                               PageLinkInfo(
-                                pageBuilder: () => ScienfoSearchPage(),
+                                pageBuilder: () => ScienfoProfilePage(),
                               ),
                             ],
-                            child: SearchIconButton(),
+                            child: ProfileIconButton(),
                           ),
                         ),
-                      ),
-                      Pinned.fromPins(
-                        Pin(size: 25.0, end: 46.0),
-                        Pin(size: 30.0, middle: 0.5078),
-                        child:
-                            // Adobe XD layer: 'ProfileIcon_button' (component)
-                            PageLink(
-                          links: [
-                            PageLinkInfo(
-                              pageBuilder: () => ScienfoProfilePage(),
-                            ),
-                          ],
-                          child: ProfileIconButton(),
+                        Pinned.fromPins(
+                          Pin(size: 25.0, start: 48.0),
+                          Pin(size: 30.0, middle: 0.475),
+                          child:
+                              // Adobe XD layer: 'HomeIcon_button' (component)
+                              HomeIconButton(),
                         ),
-                      ),
-                      Pinned.fromPins(
-                        Pin(size: 25.0, start: 48.0),
-                        Pin(size: 30.0, middle: 0.475),
-                        child:
-                            // Adobe XD layer: 'HomeIcon_button' (component)
-                            HomeIconButton(),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
                 ],
               ));
         } else {
