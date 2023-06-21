@@ -71,9 +71,11 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                     //physics: BouncingScrollPhysics(),
                     itemCount: imageData.length,
                     itemBuilder: (BuildContext context, int index) {
+                      Map<String, dynamic> currentImage = imageData[index];
+                      print("CURRENT IMAGE DATA: $currentImage");
+
                       String url = imageData[index]["url"];
                       String id = imageData[index]["id"];
-
                       return Image.network(url, fit: BoxFit.fill);
                     },
                   ),
