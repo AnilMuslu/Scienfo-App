@@ -1,17 +1,14 @@
-//import 'dart:html';
-
-//import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart';
 import 'package:adobe_xd/adobe_xd.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:scienfo/label_text_field.dart';
 import 'package:scienfo/option_icon.dart';
 import 'package:scienfo/profile_icon_button.dart';
 import 'package:scienfo/scienfo_profile_page.dart';
 import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
-
+import 'package:scienfo/models/current_image_index.dart';
 import 'blog_button.dart';
 import 'home_icon_button.dart';
 import 'like_button.dart';
@@ -62,6 +59,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
 
           List<Map<String, dynamic>> imageData = snapshot.data!;
           print("SNAPSHOT: $snapshot");
+
           return Scaffold(
               backgroundColor: const Color(0xffffffff),
               body: Stack(
@@ -70,6 +68,11 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                     scrollDirection: Axis.vertical,
                     //physics: BouncingScrollPhysics(),
                     itemCount: imageData.length,
+                    onPageChanged: (int index) {
+                      Provider.of<CurrentImageIndex>(context, listen: false)
+                          .setIndex(index);
+                    },
+
                     itemBuilder: (BuildContext context, int index) {
                       Map<String, dynamic> currentImage = imageData[index];
                       print("CURRENT IMAGE DATA: $currentImage");
@@ -98,8 +101,13 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                               height: 21.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
-
-                                  LabelTextField(documentId: imageData[0]["id"])),
+                                  Consumer<CurrentImageIndex>(
+                                builder: (context, CurrentImageIndex, _) {
+                                  return LabelTextField(
+                                      documentId: imageData[CurrentImageIndex
+                                          .currentIndex]["id"]);
+                                },
+                              )),
                         ),
                         Align(
                           alignment: Alignment.bottomRight,
