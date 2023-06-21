@@ -17,5 +17,17 @@ class FirebaseService {
       });
   }
 
-  // Keep your existing methods if they're still needed...
+  Stream<List<Map<String, dynamic>>> getImageUrlsStream2() {
+    return firestore.collection("images").snapshots().map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id
+        };
+      }).toList();
+    });
+  }
+  
+  
 }

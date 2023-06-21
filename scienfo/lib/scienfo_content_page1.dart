@@ -28,7 +28,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
     firebaseService.getImageUrlsStream().listen((data) {
       print("DataReceived: $data");
       for (var url in data) {
-        print("URL: $url");
+        //print("URL: $url");
       }
     }, onError: (err) {
       print("Received error: $err");
@@ -56,19 +56,20 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
           print("StreamBuilder is active");
 
           List<String> imageUrls = snapshot.data!;
-          print(imageUrls);
+          print("SNAPSHOT: $snapshot");
           return Scaffold(
               backgroundColor: const Color(0xffffffff),
               body: Stack(
                 children: <Widget>[
                   PageView.builder(
                     scrollDirection: Axis.vertical,
-                    physics: BouncingScrollPhysics(),
+                    //physics: BouncingScrollPhysics(),
                     itemCount: imageUrls.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Image.network(
                         imageUrls[index],
                         fit: BoxFit.fill,
+                        
                       );
                     },
                   ),
