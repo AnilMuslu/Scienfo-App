@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class LabelText extends StatelessWidget {
+  final String label;
   LabelText({
-    Key? key,
+    Key? key, required this.label,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
         Text(
-          '#Sustainable Development',
+          label,
           style: TextStyle(
             fontFamily: 'Algerian',
             fontSize: 19,

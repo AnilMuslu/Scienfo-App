@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:scienfo/category_content_pages/science_content_page.dart';
 import './search_input.dart';
 import './science_search_button.dart';
 import './technology_search_button.dart';
@@ -42,9 +43,14 @@ class ScienfoSearchPage extends StatelessWidget {
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, start: 0.0),
-                  child:
-                      // Adobe XD layer: 'ScienceSearch_button' (component)
-                      ScienceSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => ScienceContentPage(),
+                      ),
+                    ],
+                    child: ScienceSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
