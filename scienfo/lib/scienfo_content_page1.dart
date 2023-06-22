@@ -87,8 +87,14 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                       final user = Provider.of<AuthenticationService>(context,
                               listen: false)
                           .user;
+                      final userType = Provider.of<AuthenticationService>(
+                              context,
+                              listen: false)
+                          .userType;
+
                       if (user != null) {
                         print("HERE IS THE USER ID!!! ${user.uid}");
+                        print("HERE IS THE USER TYPE!!! $userType");
                       } else {
                         print("No user is currently signed in.");
                       }

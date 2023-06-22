@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import 'package:scienfo/category_content_pages/science_content_page.dart';
 import './search_input.dart';
 import './science_search_button.dart';
 import './technology_search_button.dart';
@@ -46,7 +45,7 @@ class ScienfoSearchPage extends StatelessWidget {
                   child: PageLink(
                     links: [
                       PageLinkInfo(
-                        pageBuilder: () => ScienceContentPage(),
+                        pageBuilder: () => ScienfoContentPage1(),
                       ),
                     ],
                     child: ScienceSearchButton(),
