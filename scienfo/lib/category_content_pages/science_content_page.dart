@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:scienfo/home_icon_button.dart';
 import 'package:scienfo/label_text.dart';
 import 'package:scienfo/label_text_field.dart';
-import 'package:scienfo/option_icon.dart';
+import 'package:scienfo/exit_icon.dart';
 import 'package:scienfo/profile_icon_button.dart';
 import 'package:scienfo/scienfo_content_page1.dart';
 import 'package:scienfo/scienfo_profile_page.dart';
@@ -90,7 +90,7 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                     Pin(size: 34.0, start: 53.0),
                     child:
                         // Adobe XD layer: 'Option icon' (component)
-                        OptionIcon(),
+                        ExitIcon(),
                   ),
                   Pinned.fromPins(
                     Pin(start: 23.0, end: 29.0),
@@ -120,6 +120,7 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                                 BlogButton(),
                           ),
                         ),
+                        /*
                         Align(
                           alignment: Alignment.topRight,
                           child: SizedBox(
@@ -130,6 +131,7 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                                 LikeButton(),
                           ),
                         ),
+                        */
                       ],
                     ),
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:scienfo/services/firebase_service.dart';
-import './option_icon.dart';
+import 'exit_icon.dart';
 import './label_text_field.dart';
 import './blog_button.dart';
 import './like_button.dart';
@@ -52,7 +52,7 @@ class ScienfoContentPage1 extends StatelessWidget {
                   Pin(size: 34.0, start: 53.0),
                   child:
                       // Adobe XD layer: 'Option icon' (component)
-                      OptionIcon(),
+                      ExitIcon(),
                 ),
                 Pinned.fromPins(
                   Pin(start: 23.0, end: 29.0),

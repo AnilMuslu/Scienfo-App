@@ -11,7 +11,7 @@ import './health_search_button.dart';
 import './nutrition_search_button.dart';
 import './sports_search_button.dart';
 import './sdg_search_button.dart';
-import './option_icon.dart';
+import 'exit_icon.dart';
 import './search_icon_button.dart';
 import './profile_icon_button.dart';
 import './scienfo_profile_page.dart';
@@ -116,7 +116,7 @@ class ScienfoSearchPage extends StatelessWidget {
             Pin(size: 34.0, start: 53.0),
             child:
                 // Adobe XD layer: 'Option icon' (component)
-                OptionIcon(),
+                ExitIcon(),
           ),
           Pinned.fromPins(
             Pin(start: 0.0, end: 0.0),

@@ -45,7 +45,7 @@ class SearchInput extends StatelessWidget {
                         Transform.translate(
                           offset: Offset(67.5, 13.0),
                           child: Text(
-                            'Search',
+                            'Categories',
                             style: TextStyle(
                               fontFamily: 'Roboto',
                               fontSize: 14,

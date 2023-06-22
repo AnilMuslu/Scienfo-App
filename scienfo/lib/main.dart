@@ -1,31 +1,75 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scienfo/models/current_image_index.dart';
-import 'package:scienfo/scienfo_register_page.dart';
+import 'package:scienfo/scienfo_content_page1.dart';
+import 'package:scienfo/scienfo_register_page.dart'; // assuming this is your homepage when user is logged in
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CurrentImageIndex(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => CurrentImageIndex(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AuthenticationService(),
+        ),
+      ],
       child: MaterialApp(
         title: 'SCIENFO',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
           useMaterial3: true,
         ),
-        home: ScienfoRegisterPage(),
+        home: Consumer<AuthenticationService>(
+          builder: (context, authService, _) {
+            if (authService.user == null) {
+              print('User is null. Navigating to ScienfoRegisterPage');
+              return ScienfoRegisterPage();
+            } else {
+              print('User is logged in. Navigating to HomePage');
+              return ScienfoContentPage1();  // your homepage widget when user is logged in
+            }
+          },
+        ),
       ),
     );
+  }
+}
+
+class AuthenticationService extends ChangeNotifier {
+  User? _user;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  AuthenticationService() {
+    _auth.authStateChanges().listen((User? user) {
+      print('Auth state changed. User is now: $user');
+      _user = user;
+      notifyListeners();
+    });
+  }
+
+  User? get user => _user;
+
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      _user = null;  // set user to null after signing out
+      print('User signed out.');
+      notifyListeners(); // notify listeners about user sign out
+    } catch (e) {
+      print('Error signing out: $e');
+    }
   }
 }

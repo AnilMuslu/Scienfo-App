@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import './option_icon.dart';
+import 'exit_icon.dart';
 import './favourites_button.dart';
 import './scienfo_profile_page.dart';
 import 'package:adobe_xd/page_link.dart';
@@ -104,7 +104,7 @@ class ScienfoSettingsPage extends StatelessWidget {
             Pin(size: 34.0, start: 53.0),
             child:
                 // Adobe XD layer: 'Option icon' (component)
-                OptionIcon(),
+                ExitIcon(),
           ),
           Align(
             alignment: Alignment(-0.493, -0.277),
@@ -140,6 +140,8 @@ class ScienfoSettingsPage extends StatelessWidget {
                 // Adobe XD layer: 'UserImage' (component)
                 user_image(),
           ),
+
+          /*
           Align(
             alignment: Alignment(0.006, 0.13),
             child: SizedBox(
@@ -170,6 +172,8 @@ class ScienfoSettingsPage extends StatelessWidget {
                   MiddleSchoolButton(),
             ),
           ),
+          */
+
           Pinned.fromPins(
             Pin(start: 0.0, end: 0.0),
             Pin(size: 60.5, end: 0.0),

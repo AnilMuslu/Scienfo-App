@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './user_image.dart';
-import './option_icon.dart';
+import 'exit_icon.dart';
 import './favourites_button.dart';
 import './settings_button.dart';
 import './scienfo_settings_page.dart';
@@ -35,7 +35,7 @@ class ScienfoProfilePage extends StatelessWidget {
             Pin(size: 34.0, start: 53.0),
             child:
                 // Adobe XD layer: 'Option icon' (component)
-                OptionIcon(),
+                ExitIcon(),
           ),
           Transform.translate(
             offset: Offset(0.0, 366.0),

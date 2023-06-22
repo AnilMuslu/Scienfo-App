@@ -49,20 +49,19 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
           .collection("users")
           .doc(userCredential.user!.uid)
           .set({"email": emailController.text, "userType": selectedUserType});
+
+      // create favorites collection for the user
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(userCredential.user!.uid)
+          .collection('favorites')
+          .add({});
+
       print("User registered: ${userCredential.user}");
       final snackBar =
           SnackBar(content: Text("User registration is successful."));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      /*
-      User? user = userCredential.user;
-      if (user != null) {
-        // registration successful
-        // navigate to next page or do something else
-        ScienfoContentPage1();
-      } else {
-        // registration failed
-      }
-      */
+      
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ScienfoContentPage1()),

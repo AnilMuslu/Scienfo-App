@@ -2,34 +2,34 @@ import 'package:adobe_xd/adobe_xd.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scienfo/home_icon_button.dart';
+import 'package:scienfo/label_text.dart';
 import 'package:scienfo/label_text_field.dart';
 import 'package:scienfo/exit_icon.dart';
 import 'package:scienfo/profile_icon_button.dart';
+import 'package:scienfo/scienfo_content_page1.dart';
 import 'package:scienfo/scienfo_profile_page.dart';
+import 'package:scienfo/scienfo_search_page.dart';
 import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
 import 'package:scienfo/models/current_image_index.dart';
-import 'package:scienfo/services/url_launcher.dart';
-import 'package:scienfo/services/web_view_screen.dart';
-import 'blog_button.dart';
-import 'home_icon_button.dart';
-import 'like_button.dart';
-import 'main.dart';
-import 'scienfo_search_page.dart';
+import '../blog_button.dart';
+import '../like_button.dart';
 
-class ScienfoContentPage1 extends StatefulWidget {
-  ScienfoContentPage1({Key? key}) : super(key: key);
+
+class ScienceContentPage extends StatefulWidget {
+  ScienceContentPage({Key? key}) : super(key: key);
 
   @override
-  _ScienfoContentPage1State createState() => _ScienfoContentPage1State();
+  _ScienceContentPageState createState() => _ScienceContentPageState();
 }
 
-class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
+class _ScienceContentPageState extends State<ScienceContentPage> {
   final FirebaseService firebaseService = FirebaseService();
 
   @override
   void initState() {
-    firebaseService.getImageUrlsStream2().listen((data) {
+    firebaseService.getScienceImagesStream().listen((data) {
       print("DataReceived: $data");
       for (var url in data) {
         //print("URL: $url");
@@ -46,7 +46,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: firebaseService.getImageUrlsStream2(),
+      stream: firebaseService.getScienceImagesStream(),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -82,17 +82,6 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
 
                       String url = imageData[index]["url"];
                       String id = imageData[index]["id"];
-                      print("HERE IS THE ID!!! $id");
-
-                      final user = Provider.of<AuthenticationService>(context,
-                              listen: false)
-                          .user;
-                      if (user != null) {
-                        print("HERE IS THE USER ID!!! ${user.uid}");
-                      } else {
-                        print("No user is currently signed in.");
-                      }
-
                       return Image.network(url, fit: BoxFit.fill);
                     },
                   ),
@@ -101,7 +90,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                     Pin(size: 34.0, start: 53.0),
                     child:
                         // Adobe XD layer: 'Option icon' (component)
-                        ExitIcon(),
+                        OptionIcon(),
                   ),
                   Pinned.fromPins(
                     Pin(start: 23.0, end: 29.0),
@@ -117,9 +106,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
-                                  return LabelTextField(
-                                      documentId: imageData[CurrentImageIndex
-                                          .currentIndex]["id"]);
+                                  return LabelText(label: "#science");
                                 },
                               )),
                         ),
@@ -128,46 +115,21 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                           child: SizedBox(
                             width: 40.0,
                             height: 40.0,
-                            child: Consumer<CurrentImageIndex>(
-                              builder: (context, currentIndex, _) {
-                                final currentImage =
-                                    imageData[currentIndex.currentIndex];
-                                return InkWell(
-                                  onTap: () {
-                                    final blogUrl = currentImage['blog'];
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => WebViewScreen(
-                                          url: blogUrl,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: BlogButton(),
-                                );
-                              },
-                            ),
+                            child:
+                                // Adobe XD layer: 'Blog_button' (component)
+                                BlogButton(),
                           ),
                         ),
-                        /*
                         Align(
                           alignment: Alignment.topRight,
                           child: SizedBox(
                             width: 40.0,
                             height: 40.0,
-                            child: Consumer<CurrentImageIndex>(
-                              builder: (context, currentIndex, _) {
-                                final currentImage =
-                                    imageData[currentIndex.currentIndex];
-                                return LikeButton(
-                                  userId: currentImage["id"],
-                                );
-                              },
-                            ),
+                            child:
+                                // Adobe XD layer: 'Like_button' (component)
+                                LikeButton(),
                           ),
-                        )
-                        */
+                        ),
                       ],
                     ),
                   ),
@@ -242,8 +204,15 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                           Pin(size: 25.0, start: 48.0),
                           Pin(size: 30.0, middle: 0.475),
                           child:
-                              // Adobe XD layer: 'HomeIcon_button' (component)
-                              HomeIconButton(),
+                            PageLink(
+                              links: [
+                                PageLinkInfo(
+                                  pageBuilder: () => ScienfoContentPage1(),
+                                )
+                              ],
+                              child: HomeIconButton(),
+                            )
+
                         ),
                       ],
                     ),

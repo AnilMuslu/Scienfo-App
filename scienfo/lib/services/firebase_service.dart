@@ -35,21 +35,6 @@ class FirebaseService {
     });
   }
 
-  /*
-  Stream<List<Map<String, dynamic>>> getScienceImagesStream() {
-    return _firestore
-      .collection("images")
-      .where("category", isEqualTo: "science")
-      .snapshots()
-      .map((QuerySnapshot query) {
-        List<Map<String, dynamic>> retVal = <Map<String, dynamic>>[];
-        query.docs.forEach((element) {
-          //retVal.add(element.data());
-        });
-      });
-  }
-  */
-
   Stream<List<Map<String, dynamic>>> getScienceImagesStream() {
     return _firestore
         .collection("images")
@@ -67,4 +52,149 @@ class FirebaseService {
       }).toList();
     });
   }
+
+  Stream<List<Map<String, dynamic>>> getTechnologyImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "technology")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getEngineeringImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "engineering")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getMathematicsImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "mathematics")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getArtImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "art")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getHealthImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "health")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getNutritionImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "nutrition")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getSportsImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "sports")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
+  Stream<List<Map<String, dynamic>>> getSdgImagesStream() {
+    return _firestore
+        .collection("images")
+        .where("category", isEqualTo: "sdg")
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        // return a map containing both url and id
+        return {
+          "url": doc["url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"]
+        };
+      }).toList();
+    });
+  }
+
 }
