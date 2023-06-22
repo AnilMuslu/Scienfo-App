@@ -28,7 +28,8 @@ class FirebaseService {
         return {
           "url": doc["url"].toString(),
           "id": doc.id,
-          "category": doc["category"]
+          "category": doc["category"],
+          "blog": doc["blog"]
         };
       }).toList();
     });
@@ -60,7 +61,8 @@ class FirebaseService {
         return {
           "url": doc["url"].toString(),
           "id": doc.id,
-          "category": doc["category"]
+          "category": doc["category"],
+          "blog": doc["blog"]
         };
       }).toList();
     });

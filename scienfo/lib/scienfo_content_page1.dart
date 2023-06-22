@@ -9,6 +9,7 @@ import 'package:scienfo/scienfo_profile_page.dart';
 import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
 import 'package:scienfo/models/current_image_index.dart';
+import 'package:scienfo/services/web_view_screen.dart';
 import 'blog_button.dart';
 import 'home_icon_button.dart';
 import 'like_button.dart';
@@ -78,7 +79,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                       print("CURRENT IMAGE DATA: $currentImage");
 
                       String url = imageData[index]["url"];
-                      String id = imageData[index]["id"];
+                      //String id = imageData[index]["id"];
                       return Image.network(url, fit: BoxFit.fill);
                     },
                   ),
@@ -114,9 +115,26 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                           child: SizedBox(
                             width: 40.0,
                             height: 40.0,
-                            child:
-                                // Adobe XD layer: 'Blog_button' (component)
-                                BlogButton(),
+                            child: Consumer<CurrentImageIndex>(
+                              builder: (context, currentIndex, _) {
+                                final currentImage =
+                                    imageData[currentIndex.currentIndex];
+                                return InkWell(
+                                  onTap: () {
+                                    final blogUrl = currentImage['blog'];
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => WebViewScreen(
+                                          url: blogUrl,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: BlogButton(),
+                                );
+                              },
+                            ),
                           ),
                         ),
                         Align(
