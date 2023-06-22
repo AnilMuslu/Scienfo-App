@@ -156,7 +156,6 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                             ),
                           ),
                         ),
-                        /*
                         Align(
                           alignment: Alignment.topRight,
                           child: SizedBox(
@@ -166,14 +165,45 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                               builder: (context, currentIndex, _) {
                                 final currentImage =
                                     imageData[currentIndex.currentIndex];
-                                return LikeButton(
-                                  userId: currentImage["id"],
-                                );
+                                final user = Provider.of<AuthenticationService>(
+                                        context,
+                                        listen: false)
+                                    .user;
+                                if (user != null) {
+                                  return LikeButton(
+                                      userId: user.uid,
+                                      imageId: currentImage['id']);
+                                } else {
+                                  return IconButton(
+                                    icon: Icon(Icons.thumb_up),
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title:
+                                                Text('Authentication Required'),
+                                            content: Text(
+                                                'You need to log in to use this feature'),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                child: Text('OK'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                  // You might want to navigate to the login page here
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                  );
+                                }
                               },
                             ),
                           ),
                         )
-                        */
                       ],
                     ),
                   ),

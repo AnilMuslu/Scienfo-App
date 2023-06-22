@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './user_image.dart';
 import 'exit_icon.dart';
-import './favourites_button.dart';
 import './settings_button.dart';
 import './scienfo_settings_page.dart';
 import 'package:adobe_xd/page_link.dart';
@@ -29,7 +28,10 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
   final firestoreInstance = FirebaseFirestore.instance;
 
   void updateUserType(String userId, String userType) async {
-    await firestoreInstance.collection('users').doc(userId).update({'userType': userType});
+    await firestoreInstance
+        .collection('users')
+        .doc(userId)
+        .update({'userType': userType});
   }
 
   @override
@@ -109,7 +111,8 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                   selectedUserType = newValue!;
                 });
               },
-              items: <String>['pre-school', 'primary school', 'middle school'].map<DropdownMenuItem<String>>((String value) {
+              items: <String>['pre-school', 'primary school', 'middle school']
+                  .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(
@@ -125,7 +128,27 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
             Pin(size: 50.0, middle: 0.8),
             child: ElevatedButton(
               child: Text("Save"),
-              onPressed: () => updateUserType(FirebaseAuth.instance.currentUser!.uid, selectedUserType),
+              onPressed: () {
+                updateUserType(
+                    FirebaseAuth.instance.currentUser!.uid, selectedUserType);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Notification'),
+                      content: Text('User type saved'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text('OK'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
             ),
           ),
           Pinned.fromPins(
@@ -167,7 +190,9 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                     width: 25.0,
                     height: 31.0,
                     child: PageLink(
-                      links: [PageLinkInfo(pageBuilder: () => ScienfoSearchPage())],
+                      links: [
+                        PageLinkInfo(pageBuilder: () => ScienfoSearchPage())
+                      ],
                       child: SearchIconButton(),
                     ),
                   ),
@@ -181,7 +206,9 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                   Pin(size: 25.0, start: 48.0),
                   Pin(size: 30.0, middle: 0.475),
                   child: PageLink(
-                    links: [PageLinkInfo(pageBuilder: () => ScienfoContentPage1())],
+                    links: [
+                      PageLinkInfo(pageBuilder: () => ScienfoContentPage1())
+                    ],
                     child: HomeIconButton(),
                   ),
                 ),

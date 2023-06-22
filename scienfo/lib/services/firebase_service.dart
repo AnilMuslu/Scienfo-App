@@ -26,10 +26,11 @@ class FirebaseService {
       return querySnapshot.docs.map((doc) {
         // return a map containing both url and id
         return {
-          "url": doc["url"].toString(),
+          "url": doc["image_url"].toString(),
           "id": doc.id,
           "category": doc["category"],
-          "blog": doc["blog"]
+          "blog": doc["blog"],
+          "profile": doc["user_profile"]
         };
       }).toList();
     });

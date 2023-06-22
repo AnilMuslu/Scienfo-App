@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'exit_icon.dart';
-import './favourites_button.dart';
 import './scienfo_profile_page.dart';
 import 'package:adobe_xd/page_link.dart';
 import './settings_button.dart';

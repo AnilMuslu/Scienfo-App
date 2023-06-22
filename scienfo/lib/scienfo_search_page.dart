@@ -111,13 +111,6 @@ class ScienfoSearchPage extends StatelessWidget {
             ),
           ),
           Pinned.fromPins(
-            Pin(size: 7.0, end: 20.0),
-            Pin(size: 34.0, start: 53.0),
-            child:
-                // Adobe XD layer: 'Option icon' (component)
-                ExitIcon(),
-          ),
-          Pinned.fromPins(
             Pin(start: 0.0, end: 0.0),
             Pin(size: 60.5, end: 0.0),
             child:

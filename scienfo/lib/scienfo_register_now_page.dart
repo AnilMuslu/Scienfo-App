@@ -10,8 +10,6 @@ import './scienfo_logo.dart';
 import './welcome_text.dart';
 import './email_input.dart';
 import './password_input.dart';
-import './pre_school_button.dart';
-import './primary_school_button.dart';
 import './middle_school_button.dart';
 
 class ScienfoRegisterNowPage extends StatefulWidget {
@@ -61,7 +59,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
       final snackBar =
           SnackBar(content: Text("User registration is successful."));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      
+
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ScienfoContentPage1()),
@@ -183,46 +181,24 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                 passwordController: passwordController,
               ),
             ),
-            /*
-            Pinned.fromPins(
-              Pin(size: 88.0, start: 37.0),
-              Pin(size: 28.0, middle: 0.7844),
-              child:
-                  // Adobe XD layer: 'PreSchool_button' (component)
-                  PreSchoolButton(),
-            ),
-            Align(
-              alignment: Alignment(0.0, 0.570),
-              child: SizedBox(
-                width: 88.0,
-                height: 28.0,
-                child:
-                    // Adobe XD layer: 'PrimarySchool_button' (component)
-                    PrimarySchoolButton(),
-              ),
-            ),
-            Pinned.fromPins(
-              Pin(size: 88.0, end: 37.0),
-              Pin(size: 28.0, middle: 0.7844),
-              child:
-                  // Adobe XD layer: 'MiddleSchool_button' (component)
-                  MiddleSchoolButton(),
-            ),
-            */
             Pinned.fromPins(
               Pin(size: 135.0, start: 37.0), // Adjust these to suit your layout
-              Pin(size: 50.0, middle: 0.7844), // Adjust these to suit your layout
+              Pin(
+                  size: 50.0,
+                  middle: 0.7844), // Adjust these to suit your layout
               child: DropdownButton<String>(
                 dropdownColor: const Color.fromARGB(255, 105, 99, 92),
                 value: selectedUserType,
-                icon: const Icon(Icons.arrow_downward, color: Colors.white,),
+                icon: const Icon(
+                  Icons.arrow_downward,
+                  color: Colors.white,
+                ),
                 iconSize: 24,
                 elevation: 16,
                 underline: Container(
                   height: 2,
                   color: Colors.deepPurpleAccent,
                 ),
-                
                 onChanged: (String? newValue) {
                   setState(() {
                     selectedUserType = newValue!;
@@ -235,7 +211,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                     child: Text(
                       value,
                       style: TextStyle(color: Colors.white),
-                      ),
+                    ),
                   );
                 }).toList(),
               ),
