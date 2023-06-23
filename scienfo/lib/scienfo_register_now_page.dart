@@ -25,9 +25,9 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   List<DropdownMenuItem<String>> userTypeItems = [
-    DropdownMenuItem(child: Text("Pre-School"), value: "pre-school"),
-    DropdownMenuItem(child: Text("Primary School"), value: "primary school"),
-    DropdownMenuItem(child: Text("Middle School"), value: "middle school")
+    DropdownMenuItem(child: Text("##Pre-school-School"), value: "#Pre-school-School"),
+    DropdownMenuItem(child: Text("#Primary-school"), value: "#Primary-school"),
+    DropdownMenuItem(child: Text("#Middle-school"), value: "#Middle-school")
   ];
 
   String? selectedUserType;
@@ -35,7 +35,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
   @override
   void initState() {
     super.initState();
-    selectedUserType = "pre-school";
+    selectedUserType = "##Pre-school-School";
   }
 
   void registerUser(BuildContext context) async {
@@ -204,7 +204,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                     selectedUserType = newValue!;
                   });
                 },
-                items: <String>['pre-school', 'primary school', 'middle school']
+                items: <String>['#Pre-school-School', 'primary school', 'middle school']
                     .map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,

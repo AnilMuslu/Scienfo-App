@@ -132,8 +132,7 @@ class _ArtContentPageState extends State<ArtContentPage> {
                                         documentId: imageData[CurrentImageIndex
                                             .currentIndex]["id"]);
                                   } else {
-                                    // Return a fallback widget or simply an empty Container if the index is out of bounds.
-                                    return Container();
+                                          return Container();
                                   }
                                 },
                               )),
@@ -164,8 +163,7 @@ class _ArtContentPageState extends State<ArtContentPage> {
                                     child: BlogButton(),
                                   );
                                 } else {
-                                  // Return a fallback widget or simply an empty Container if the index is out of bounds.
-                                  return Container();
+                                      return Container();
                                 }
                               },
                             ),

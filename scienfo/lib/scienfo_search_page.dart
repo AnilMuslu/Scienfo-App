@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:scienfo/category_content_pages/nutrition_content_page.dart';
-import 'package:scienfo/category_content_pages/science_content_page1.dart';
+import 'package:scienfo/category_content_pages/science_content_page.dart';
 import 'package:scienfo/category_content_pages/engineering_content_page.dart';
 import 'package:scienfo/category_content_pages/sdg_content_page.dart';
 import 'package:scienfo/category_content_pages/sports_content_page.dart';

@@ -9,25 +9,24 @@ import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
 import 'package:scienfo/models/current_image_index.dart';
 import 'package:scienfo/services/web_view_screen.dart';
+import 'blog_button.dart';
+import 'home_icon_button.dart';
+import 'main.dart';
+import 'scienfo_search_page.dart';
 
-import '../blog_button.dart';
-import '../home_icon_button.dart';
-import '../main.dart';
-import '../scienfo_content_page1.dart';
-import '../scienfo_search_page.dart';
-
-class EngineeringContentPage extends StatefulWidget {
-  EngineeringContentPage({Key? key}) : super(key: key);
+class ScienfoContentPage1 extends StatefulWidget {
+  ScienfoContentPage1({Key? key}) : super(key: key);
 
   @override
-  _EngineeringContentPageState createState() => _EngineeringContentPageState();
+  _ScienfoContentPage1State createState() => _ScienfoContentPage1State();
 }
 
-class _EngineeringContentPageState extends State<EngineeringContentPage> {
+class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
   final FirebaseService firebaseService = FirebaseService();
 
   Set<String> favoriteImages = {};
 
+  
   /*
   void initState() {
     super.initState();
@@ -49,7 +48,7 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: firebaseService.getEngineeringImagesStream(),
+      stream: firebaseService.getImageUrlsStream(),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -126,17 +125,66 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
-                                  if (CurrentImageIndex.currentIndex <
-                                      imageData.length) {
-                                    return LabelTextField(
-                                        documentId: imageData[CurrentImageIndex
-                                            .currentIndex]["id"]);
-                                  } else {
-                                          return Container();
-                                  }
+                                  return LabelTextField(
+                                      documentId: imageData[CurrentImageIndex
+                                          .currentIndex]["id"]);
                                 },
                               )),
                         ),
+                        /*
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Consumer<CurrentImageIndex>(
+                              builder: (context, currentIndex, _) {
+                            final currentImage =
+                                imageData[currentIndex.currentIndex];
+                            return IconButton(
+                              icon: favoriteImages.contains(currentImage['id'])
+                                  ? Icon(Icons.favorite)
+                                  : Icon(Icons.favorite_border),
+                              onPressed: () {
+                                final user = Provider.of<AuthenticationService>(
+                                        context,
+                                        listen: false)
+                                    .user;
+                                if (user == null) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text('Authentication Required'),
+                                        content: Text(
+                                            'To use this function, please register or login'),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: Text('OK'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  setState(() {
+                                    if (favoriteImages
+                                        .contains(currentImage['id'])) {
+                                      favoriteImages.remove(currentImage['id']);
+                                      firebaseService.updateFavorite(
+                                          user.uid, currentImage['id'], false);
+                                    } else {
+                                      favoriteImages.add(currentImage['id']);
+                                      firebaseService.updateFavorite(
+                                          user.uid, currentImage['id'], true);
+                                    }
+                                  });
+                                }
+                              },
+                            );
+                          }),
+                        ),
+                        */
                         Align(
                           alignment: Alignment.bottomRight,
                           child: SizedBox(
@@ -144,27 +192,22 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
                             height: 40.0,
                             child: Consumer<CurrentImageIndex>(
                               builder: (context, currentIndex, _) {
-                                if (currentIndex.currentIndex <
-                                    imageData.length) {
-                                  final currentImage =
-                                      imageData[currentIndex.currentIndex];
-                                  return InkWell(
-                                    onTap: () {
-                                      final blogUrl = currentImage['blog'];
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => WebViewScreen(
-                                            url: blogUrl,
-                                          ),
+                                final currentImage =
+                                    imageData[currentIndex.currentIndex];
+                                return InkWell(
+                                  onTap: () {
+                                    final blogUrl = currentImage['blog'];
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => WebViewScreen(
+                                          url: blogUrl,
                                         ),
-                                      );
-                                    },
-                                    child: BlogButton(),
-                                  );
-                                } else {
-                                  return Container();
-                                }
+                                      ),
+                                    );
+                                  },
+                                  child: BlogButton(),
+                                );
                               },
                             ),
                           ),
@@ -243,15 +286,8 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
                           Pin(size: 25.0, start: 48.0),
                           Pin(size: 30.0, middle: 0.475),
                           child:
-                              // Adobe XD layer: 'ProfileIcon_button' (component)
-                              PageLink(
-                            links: [
-                              PageLinkInfo(
-                                pageBuilder: () => ScienfoContentPage1(),
-                              ),
-                            ],
-                            child: HomeIconButton(),
-                          ),
+                              // Adobe XD layer: 'HomeIcon_button' (component)
+                              HomeIconButton(),
                         ),
                       ],
                     ),

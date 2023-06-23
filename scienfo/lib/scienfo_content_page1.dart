@@ -23,32 +23,15 @@ class ScienfoContentPage1 extends StatefulWidget {
 
 class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
   final FirebaseService firebaseService = FirebaseService();
-
   Set<String> favoriteImages = {};
-
-  
-  /*
-  void initState() {
-    super.initState();
-
-    final user =
-        Provider.of<AuthenticationService>(context, listen: false).user;
-    if (user != null) {
-      firebaseService.getFavorites(user.uid).then((favorites) {
-        setState(() {
-          favoriteImages = Set<String>.from(favorites);
-        });
-      });
-    }
-
-    // ... Existing code ...
-  }
-  */
 
   @override
   Widget build(BuildContext context) {
+    final userType =
+        Provider.of<AuthenticationService>(context, listen: false).userType;
+
     return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: firebaseService.getImageUrlsStream(),
+      stream: firebaseService.getFilteredImagesStream(userType),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -119,7 +102,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: SizedBox(
-                              width: 269.0,
+                              width: 288.0,
                               height: 21.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
@@ -292,6 +275,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                       ],
                     ),
                   ),
+                  // ...
                 ],
               ));
         } else {

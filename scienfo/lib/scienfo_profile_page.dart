@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './user_image.dart';
 import 'exit_icon.dart';
-import './settings_button.dart';
-import './scienfo_settings_page.dart';
 import 'package:adobe_xd/page_link.dart';
-import './liked_content_field.dart';
 import './search_icon_button.dart';
 import './scienfo_search_page.dart';
 import './profile_icon_button.dart';
@@ -24,7 +21,7 @@ class ScienfoProfilePage extends StatefulWidget {
 }
 
 class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
-  String selectedUserType = 'pre-school'; // default value
+  String selectedUserType = '#Pre-school'; // default value
   final firestoreInstance = FirebaseFirestore.instance;
 
   void updateUserType(String userId, String userType) async {
@@ -50,14 +47,7 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
             Pin(size: 34.0, start: 53.0),
             child: ExitIcon(),
           ),
-          Transform.translate(
-            offset: Offset(0.0, 366.0),
-            child: Container(
-              width: 205.0,
-              height: 1.0,
-              color: const Color(0xff707070),
-            ),
-          ),
+          
           Transform.translate(
             offset: Offset(0.0, 367.0),
             child: Container(
@@ -66,34 +56,18 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
               color: const Color(0xff707070),
             ),
           ),
+          
           Pinned.fromPins(
-            Pin(size: 135.0, middle: 0.5),
-            Pin(size: 50.0, middle: 0.4),
-            child: ElevatedButton(
-              child: Text("Go to Favorites"),
-              onPressed: () {
-                // perform your action here
-              },
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 200.0, middle: 0.5),
+            Pin(size: 170.0, middle: 0.5),
             Pin(size: 50.0, middle: 0.5),
             child: Text(
               'Change Profile Type',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
+         
           Pinned.fromPins(
-            Pin(size: 135.0, middle: 0.5),
-            Pin(size: 50.0, middle: 0.6),
-            child: PageLink(
-              links: [PageLinkInfo(pageBuilder: () => ScienfoSettingsPage())],
-              child: SettingsButton(),
-            ),
-          ),
-          Pinned.fromPins(
-            Pin(size: 200.0, middle: 0.5),
+            Pin(size: 170.0, middle: 0.5),
             Pin(size: 50.0, middle: 0.7),
             child: DropdownButton<String>(
               value: selectedUserType,
@@ -111,7 +85,7 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                   selectedUserType = newValue!;
                 });
               },
-              items: <String>['pre-school', 'primary school', 'middle school']
+              items: <String>['#Pre-school', '#Primary-school', '#Middle-school']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

@@ -139,6 +139,40 @@ class FirebaseService {
     });
   }
 
+  Stream<List<Map<String, dynamic>>> preSchoolImagesStream() {
+  return _firestore.collection('images')
+      .where('type', isEqualTo: '#Pre-school-School')
+      .snapshots()
+      .map((QuerySnapshot querySnapshot) {
+        return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
+          return docSnapshot.data() as Map<String, dynamic>;
+        }).toList();
+      });
+}
+
+Stream<List<Map<String, dynamic>>> primarySchoolImagesStream() {
+  return _firestore.collection('images')
+      .where('type', isEqualTo: '#Primary-school')
+      .snapshots()
+      .map((QuerySnapshot querySnapshot) {
+        return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
+          return docSnapshot.data() as Map<String, dynamic>;
+        }).toList();
+      });
+}
+
+Stream<List<Map<String, dynamic>>> middleSchoolImagesStream() {
+  return _firestore.collection('images')
+      .where('type', isEqualTo: '#Middle-school')
+      .snapshots()
+      .map((QuerySnapshot querySnapshot) {
+        return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
+          return docSnapshot.data() as Map<String, dynamic>;
+        }).toList();
+      });
+}
+
+
   Stream<List<Map<String, dynamic>>> getNutritionImagesStream() {
     return _firestore
         .collection("images")
@@ -218,4 +252,27 @@ class FirebaseService {
     }
   }
   */
+
+  Stream<List<Map<String, dynamic>>> getFilteredImagesStream(String? userType) {
+  Query query = _firestore.collection("images");
+
+  // If userType is not null, apply the filter
+  if (userType != null) {
+    query = query.where("user_profile", isEqualTo: userType);
+  }
+
+  return query.snapshots().map((QuerySnapshot querySnapshot) {
+    return querySnapshot.docs.map((doc) {
+      return {
+        "url": doc["image_url"].toString(),
+        "id": doc.id,
+        "category": doc["category"],
+        "blog": doc["blog"],
+        "profile": doc["user_profile"]
+      };
+    }).toList();
+  });
+}
+
+
 }
