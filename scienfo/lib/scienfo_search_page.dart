@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:scienfo/category_content_pages/science_content_page1.dart';
 import './search_input.dart';
 import './science_search_button.dart';
 import './technology_search_button.dart';
@@ -10,7 +11,6 @@ import './health_search_button.dart';
 import './nutrition_search_button.dart';
 import './sports_search_button.dart';
 import './sdg_search_button.dart';
-import 'exit_icon.dart';
 import './search_icon_button.dart';
 import './profile_icon_button.dart';
 import './scienfo_profile_page.dart';
@@ -45,7 +45,7 @@ class ScienfoSearchPage extends StatelessWidget {
                   child: PageLink(
                     links: [
                       PageLinkInfo(
-                        pageBuilder: () => ScienfoContentPage1(),
+                        pageBuilder: () => ScienceContentPage(),
                       ),
                     ],
                     child: ScienceSearchButton(),

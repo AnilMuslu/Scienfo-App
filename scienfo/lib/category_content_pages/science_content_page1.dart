@@ -4,24 +4,26 @@ import 'package:provider/provider.dart';
 import 'package:scienfo/label_text_field.dart';
 import 'package:scienfo/exit_icon.dart';
 import 'package:scienfo/profile_icon_button.dart';
+import 'package:scienfo/scienfo_content_page1.dart';
 import 'package:scienfo/scienfo_profile_page.dart';
 import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
 import 'package:scienfo/models/current_image_index.dart';
 import 'package:scienfo/services/web_view_screen.dart';
-import 'blog_button.dart';
-import 'home_icon_button.dart';
-import 'main.dart';
-import 'scienfo_search_page.dart';
 
-class ScienfoContentPage1 extends StatefulWidget {
-  ScienfoContentPage1({Key? key}) : super(key: key);
+import '../blog_button.dart';
+import '../home_icon_button.dart';
+import '../main.dart';
+import '../scienfo_search_page.dart';
+
+class ScienceContentPage extends StatefulWidget {
+  ScienceContentPage({Key? key}) : super(key: key);
 
   @override
-  _ScienfoContentPage1State createState() => _ScienfoContentPage1State();
+  _ScienceContentPageState createState() => _ScienceContentPageState();
 }
 
-class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
+class _ScienceContentPageState extends State<ScienceContentPage> {
   final FirebaseService firebaseService = FirebaseService();
 
   Set<String> favoriteImages = {};
@@ -48,7 +50,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: firebaseService.getImageUrlsStream(),
+      stream: firebaseService.getScienceImagesStream(),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -125,9 +127,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
-                                  return LabelTextField(
-                                      documentId: imageData[CurrentImageIndex
-                                          .currentIndex]["id"]);
+                                  return Text("Science");
                                 },
                               )),
                         ),
@@ -286,8 +286,15 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                           Pin(size: 25.0, start: 48.0),
                           Pin(size: 30.0, middle: 0.475),
                           child:
-                              // Adobe XD layer: 'HomeIcon_button' (component)
-                              HomeIconButton(),
+                              // Adobe XD layer: 'ProfileIcon_button' (component)
+                              PageLink(
+                            links: [
+                              PageLinkInfo(
+                                pageBuilder: () => ScienfoContentPage1(),
+                              ),
+                            ],
+                            child: HomeIconButton(),
+                          ),
                         ),
                       ],
                     ),
