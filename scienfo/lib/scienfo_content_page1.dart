@@ -29,7 +29,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
 
   @override
   void initState() {
-    firebaseService.getImageUrlsStream2().listen((data) {
+    firebaseService.getImageUrlsStream().listen((data) {
       print("DataReceived: $data");
       for (var url in data) {
         //print("URL: $url");
@@ -46,7 +46,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: firebaseService.getImageUrlsStream2(),
+      stream: firebaseService.getImageUrlsStream(),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
