@@ -180,7 +180,7 @@ class FirebaseService {
   Stream<List<Map<String, dynamic>>> getSdgImagesStreams() {
     return _firestore
         .collection("images")
-        .where("category", isEqualTo: "#Sdg")
+        .where("category", isEqualTo: "#Sustainable Development Goals")
         .snapshots()
         .map((QuerySnapshot querySnapshot) {
       return querySnapshot.docs.map((doc) {

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:scienfo/label_text_field.dart';
 import 'package:scienfo/exit_icon.dart';
 import 'package:scienfo/profile_icon_button.dart';
-import 'package:scienfo/scienfo_content_page1.dart';
 import 'package:scienfo/scienfo_profile_page.dart';
 import 'package:scienfo/search_icon_button.dart';
 import 'package:scienfo/services/firebase_service.dart';
@@ -14,21 +13,21 @@ import 'package:scienfo/services/web_view_screen.dart';
 import '../blog_button.dart';
 import '../home_icon_button.dart';
 import '../main.dart';
+import '../scienfo_content_page1.dart';
 import '../scienfo_search_page.dart';
 
-class ScienceContentPage extends StatefulWidget {
-  ScienceContentPage({Key? key}) : super(key: key);
+class SportsContentPage extends StatefulWidget {
+  SportsContentPage({Key? key}) : super(key: key);
 
   @override
-  _ScienceContentPageState createState() => _ScienceContentPageState();
+  _SportsContentPageState createState() => _SportsContentPageState();
 }
 
-class _ScienceContentPageState extends State<ScienceContentPage> {
+class _SportsContentPageState extends State<SportsContentPage> {
   final FirebaseService firebaseService = FirebaseService();
 
   Set<String> favoriteImages = {};
 
-  
   /*
   void initState() {
     super.initState();
@@ -50,7 +49,7 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: firebaseService.getScienceImagesStream(),
+      stream: firebaseService.getSportsImagesStream(),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -119,99 +118,59 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                     child: Stack(
                       children: <Widget>[
                         Align(
-                          alignment: Alignment.bottomLeft,
-                          child: SizedBox(
-                              width: 269.0,
-                              height: 21.0,
-                              child:
-                                  // Adobe XD layer: 'Label_textField' (component)
-                                  Consumer<CurrentImageIndex>(
-                                builder: (context, CurrentImageIndex, _) {
-                                  return Text("Science");
-                                },
-                              )),
-                        ),
-                        /*
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Consumer<CurrentImageIndex>(
-                              builder: (context, currentIndex, _) {
-                            final currentImage =
-                                imageData[currentIndex.currentIndex];
-                            return IconButton(
-                              icon: favoriteImages.contains(currentImage['id'])
-                                  ? Icon(Icons.favorite)
-                                  : Icon(Icons.favorite_border),
-                              onPressed: () {
-                                final user = Provider.of<AuthenticationService>(
-                                        context,
-                                        listen: false)
-                                    .user;
-                                if (user == null) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text('Authentication Required'),
-                                        content: Text(
-                                            'To use this function, please register or login'),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            child: Text('OK'),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  setState(() {
-                                    if (favoriteImages
-                                        .contains(currentImage['id'])) {
-                                      favoriteImages.remove(currentImage['id']);
-                                      firebaseService.updateFavorite(
-                                          user.uid, currentImage['id'], false);
-                                    } else {
-                                      favoriteImages.add(currentImage['id']);
-                                      firebaseService.updateFavorite(
-                                          user.uid, currentImage['id'], true);
-                                    }
-                                  });
-                                }
-                              },
-                            );
-                          }),
-                        ),
-                        */
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: SizedBox(
-                            width: 40.0,
-                            height: 40.0,
-                            child: Consumer<CurrentImageIndex>(
-                              builder: (context, currentIndex, _) {
-                                final currentImage =
-                                    imageData[currentIndex.currentIndex];
-                                return InkWell(
-                                  onTap: () {
-                                    final blogUrl = currentImage['blog'];
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => WebViewScreen(
-                                          url: blogUrl,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: BlogButton(),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
+  alignment: Alignment.bottomLeft,
+  child: SizedBox(
+      width: 269.0,
+      height: 21.0,
+      child:
+          // Adobe XD layer: 'Label_textField' (component)
+          Consumer<CurrentImageIndex>(
+        builder: (context, CurrentImageIndex, _) {
+          if (CurrentImageIndex.currentIndex <
+              imageData.length) {
+            return LabelTextField(
+                documentId: imageData[CurrentImageIndex
+                    .currentIndex]["id"]);
+          } else {
+            // Return a fallback widget or simply an empty Container if the index is out of bounds.
+            return Container();
+          }
+        },
+      )),
+),
+Align(
+  alignment: Alignment.bottomRight,
+  child: SizedBox(
+    width: 40.0,
+    height: 40.0,
+    child: Consumer<CurrentImageIndex>(
+      builder: (context, currentIndex, _) {
+        if (currentIndex.currentIndex < imageData.length) {
+          final currentImage =
+              imageData[currentIndex.currentIndex];
+          return InkWell(
+            onTap: () {
+              final blogUrl = currentImage['blog'];
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WebViewScreen(
+                    url: blogUrl,
+                  ),
+                ),
+              );
+            },
+            child: BlogButton(),
+          );
+        } else {
+          // Return a fallback widget or simply an empty Container if the index is out of bounds.
+          return Container();
+        }
+      },
+    ),
+  ),
+),
+
                       ],
                     ),
                   ),

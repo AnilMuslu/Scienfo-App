@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:scienfo/category_content_pages/nutrition_content_page.dart';
 import 'package:scienfo/category_content_pages/science_content_page1.dart';
+import 'package:scienfo/category_content_pages/engineering_content_page.dart';
+import 'package:scienfo/category_content_pages/sdg_content_page.dart';
+import 'package:scienfo/category_content_pages/sports_content_page.dart';
+import 'package:scienfo/category_content_pages/technology_content_page.dart';
 import './search_input.dart';
 import './science_search_button.dart';
 import './technology_search_button.dart';
@@ -17,6 +22,9 @@ import './scienfo_profile_page.dart';
 import 'package:adobe_xd/page_link.dart';
 import './home_icon_button.dart';
 import './scienfo_content_page1.dart';
+import 'category_content_pages/art_content_page.dart';
+import 'category_content_pages/health_content_page.dart';
+import 'category_content_pages/mathematics_content_page.dart';
 
 class ScienfoSearchPage extends StatelessWidget {
   ScienfoSearchPage({
@@ -54,58 +62,98 @@ class ScienfoSearchPage extends StatelessWidget {
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, start: 83.1),
-                  child:
-                      // Adobe XD layer: 'TechnologySearch_bu…' (component)
-                      TechnologySearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => TechnologyContentPage(),
+                      ),
+                    ],
+                    child: TechnologySearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, middle: 0.25),
-                  child:
-                      // Adobe XD layer: 'EngineeringSearch_b…' (component)
-                      EngineeringSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => EngineeringContentPage(),
+                      ),
+                    ],
+                    child: EngineeringSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, middle: 0.375),
-                  child:
-                      // Adobe XD layer: 'MathematicsSearch_b…' (component)
-                      MathematicsSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => MathematicsContentPage(),
+                      ),
+                    ],
+                    child: MathematicsSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, middle: 0.5),
-                  child:
-                      // Adobe XD layer: 'ArtSearch_button' (component)
-                      ArtSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => ArtContentPage(),
+                      ),
+                    ],
+                    child: ArtSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, middle: 0.625),
-                  child:
-                      // Adobe XD layer: 'HealthSearch_button' (component)
-                      HealthSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => HealthContentPage(),
+                      ),
+                    ],
+                    child: HealthSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, middle: 0.75),
-                  child:
-                      // Adobe XD layer: 'NutritionSearch_but…' (component)
-                      NutritionSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => NutritionContentPage(),
+                      ),
+                    ],
+                    child: NutritionSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, end: 83.1),
-                  child:
-                      // Adobe XD layer: 'SportsSearch_button' (component)
-                      SportsSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => SportsContentPage(),
+                      ),
+                    ],
+                    child: SportsSearchButton(),
+                  ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
                   Pin(size: 63.4, end: 0.0),
-                  child:
-                      // Adobe XD layer: 'SDGSearch_button' (component)
-                      SDGSearchButton(),
+                  child: PageLink(
+                    links: [
+                      PageLinkInfo(
+                        pageBuilder: () => SDGContentPage(),
+                      ),
+                    ],
+                    child: SDGSearchButton(),
+                  ),
                 ),
               ],
             ),
