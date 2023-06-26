@@ -36,7 +36,7 @@ class user_image extends StatelessWidget {
           Pin(start: 0.0, end: 0.0),
           Pin(size: 19.0, end: 0.0),
           child: Text(
-            'anillmusluu@gmail.com',
+            'Welcome to SCIENFO',
             style: TextStyle(
               fontFamily: 'Roboto',
               fontSize: 14,

@@ -141,7 +141,7 @@ class FirebaseService {
 
   Stream<List<Map<String, dynamic>>> preSchoolImagesStream() {
   return _firestore.collection('images')
-      .where('type', isEqualTo: '#Pre-school-School')
+      .where('user_profile', isEqualTo: '#Pre-school')
       .snapshots()
       .map((QuerySnapshot querySnapshot) {
         return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
@@ -152,7 +152,7 @@ class FirebaseService {
 
 Stream<List<Map<String, dynamic>>> primarySchoolImagesStream() {
   return _firestore.collection('images')
-      .where('type', isEqualTo: '#Primary-school')
+      .where('user_profile', isEqualTo: '#Primary-school')
       .snapshots()
       .map((QuerySnapshot querySnapshot) {
         return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
@@ -163,7 +163,7 @@ Stream<List<Map<String, dynamic>>> primarySchoolImagesStream() {
 
 Stream<List<Map<String, dynamic>>> middleSchoolImagesStream() {
   return _firestore.collection('images')
-      .where('type', isEqualTo: '#Middle-school')
+      .where('user_profile', isEqualTo: '#Middle-school')
       .snapshots()
       .map((QuerySnapshot querySnapshot) {
         return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
@@ -229,6 +229,22 @@ Stream<List<Map<String, dynamic>>> middleSchoolImagesStream() {
       }).toList();
     });
   }
+
+  Stream<List<Map<String, dynamic>>> getUserImagesStream(String? userType) {
+  if (userType == null) {
+    return getImageUrlsStream();
+  } else if (userType == '#Pre-school') {
+    return preSchoolImagesStream();
+  } else if (userType == '#Middle-school') {
+    return primarySchoolImagesStream();
+  } else if (userType == '#High-school') {
+    return middleSchoolImagesStream();
+  } else {
+    // if userType doesn't match any of the above, return the stream of all images
+    return getImageUrlsStream();
+  }
+}
+
   /*
   Future<List<String>> getFavorites(String userId) async {
     DocumentSnapshot userDoc = await _firestore.collection('users').doc(userId).get();

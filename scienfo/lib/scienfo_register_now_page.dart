@@ -24,10 +24,10 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
   final passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  List<DropdownMenuItem<String>> userTypeItems = [
-    DropdownMenuItem(child: Text("##Pre-school-School"), value: "#Pre-school-School"),
-    DropdownMenuItem(child: Text("#Primary-school"), value: "#Primary-school"),
-    DropdownMenuItem(child: Text("#Middle-school"), value: "#Middle-school")
+  List<String> userTypeItems = [
+    "#Pre-school",
+    "#Primary-school",
+    "#Middle-school"
   ];
 
   String? selectedUserType;
@@ -35,7 +35,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
   @override
   void initState() {
     super.initState();
-    selectedUserType = "##Pre-school-School";
+    selectedUserType = userTypeItems.first; // update this line
   }
 
   void registerUser(BuildContext context) async {
@@ -135,7 +135,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                 children: <Widget>[
                   SizedBox.expand(
                       child: Text(
-                    'Select User Profile:',
+                    '',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 14,
@@ -181,8 +181,9 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                 passwordController: passwordController,
               ),
             ),
+            /*
             Pinned.fromPins(
-              Pin(size: 135.0, start: 37.0), // Adjust these to suit your layout
+              Pin(size: 150.0, start: 37.0), // Adjust these to suit your layout
               Pin(
                   size: 50.0,
                   middle: 0.7844), // Adjust these to suit your layout
@@ -201,11 +202,11 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                 ),
                 onChanged: (String? newValue) {
                   setState(() {
-                    selectedUserType = newValue!;
+                    selectedUserType = newValue;
                   });
                 },
-                items: <String>['#Pre-school-School', 'primary school', 'middle school']
-                    .map<DropdownMenuItem<String>>((String value) {
+                items:
+                    userTypeItems.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(
@@ -216,6 +217,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
                 }).toList(),
               ),
             ),
+            */
           ],
         ),
       );
