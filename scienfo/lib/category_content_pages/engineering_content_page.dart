@@ -28,24 +28,6 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
 
   Set<String> favoriteImages = {};
 
-  /*
-  void initState() {
-    super.initState();
-
-    final user =
-        Provider.of<AuthenticationService>(context, listen: false).user;
-    if (user != null) {
-      firebaseService.getFavorites(user.uid).then((favorites) {
-        setState(() {
-          favoriteImages = Set<String>.from(favorites);
-        });
-      });
-    }
-
-    // ... Existing code ...
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
@@ -113,24 +95,24 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
                         ExitIcon(),
                   ),
                   Pinned.fromPins(
-                    Pin(start: 23.0, end: 29.0),
+                    Pin(start: 10.0, end: 29.0),
                     Pin(size: 114.0, end: 94.0),
                     child: Stack(
                       children: <Widget>[
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: SizedBox(
-                              width: 269.0,
-                              height: 21.0,
+                              width: 335.0,
+                              height: 50.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
                                   if (CurrentImageIndex.currentIndex <
                                       imageData.length) {
-                                    return LabelTextField(
-                                        documentId: imageData[CurrentImageIndex
-                                            .currentIndex]["id"]);
+                                  return LabelTextField(
+                                      documentId: imageData[CurrentImageIndex
+                                          .currentIndex]["id"]);
                                   } else {
                                           return Container();
                                   }

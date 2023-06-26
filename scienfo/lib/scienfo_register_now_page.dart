@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './register_now_button.dart';
 import './scienfo_content_page1.dart';
-import 'package:adobe_xd/page_link.dart';
 import './scienfo_logo.dart';
 import './welcome_text.dart';
 import './email_input.dart';
@@ -47,13 +46,6 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
           .collection("users")
           .doc(userCredential.user!.uid)
           .set({"email": emailController.text, "userType": selectedUserType});
-
-      // create favorites collection for the user
-      FirebaseFirestore.instance
-          .collection("users")
-          .doc(userCredential.user!.uid)
-          .collection('favorites')
-          .add({});
 
       print("User registered: ${userCredential.user}");
       final snackBar =

@@ -28,24 +28,6 @@ class _SportsContentPageState extends State<SportsContentPage> {
 
   Set<String> favoriteImages = {};
 
-  /*
-  void initState() {
-    super.initState();
-
-    final user =
-        Provider.of<AuthenticationService>(context, listen: false).user;
-    if (user != null) {
-      firebaseService.getFavorites(user.uid).then((favorites) {
-        setState(() {
-          favoriteImages = Set<String>.from(favorites);
-        });
-      });
-    }
-
-    // ... Existing code ...
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
@@ -113,64 +95,63 @@ class _SportsContentPageState extends State<SportsContentPage> {
                         ExitIcon(),
                   ),
                   Pinned.fromPins(
-                    Pin(start: 23.0, end: 29.0),
+                    Pin(start: 10.0, end: 29.0),
                     Pin(size: 114.0, end: 94.0),
                     child: Stack(
                       children: <Widget>[
                         Align(
-  alignment: Alignment.bottomLeft,
-  child: SizedBox(
-      width: 269.0,
-      height: 21.0,
-      child:
-          // Adobe XD layer: 'Label_textField' (component)
-          Consumer<CurrentImageIndex>(
-        builder: (context, CurrentImageIndex, _) {
+                          alignment: Alignment.bottomLeft,
+                          child: SizedBox(
+                              width: 335.0,
+                              height: 50.0,
+                              child:
+                                  // Adobe XD layer: 'Label_textField' (component)
+                                  Consumer<CurrentImageIndex>(
+                                builder: (context, CurrentImageIndex, _) {
           if (CurrentImageIndex.currentIndex <
               imageData.length) {
-            return LabelTextField(
-                documentId: imageData[CurrentImageIndex
-                    .currentIndex]["id"]);
+                                  return LabelTextField(
+                                      documentId: imageData[CurrentImageIndex
+                                          .currentIndex]["id"]);
           } else {
             // Return a fallback widget or simply an empty Container if the index is out of bounds.
             return Container();
           }
-        },
-      )),
-),
-Align(
-  alignment: Alignment.bottomRight,
-  child: SizedBox(
-    width: 40.0,
-    height: 40.0,
-    child: Consumer<CurrentImageIndex>(
-      builder: (context, currentIndex, _) {
+                                },
+                              )),
+                        ),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: SizedBox(
+                            width: 40.0,
+                            height: 40.0,
+                            child: Consumer<CurrentImageIndex>(
+                              builder: (context, currentIndex, _) {
         if (currentIndex.currentIndex < imageData.length) {
-          final currentImage =
-              imageData[currentIndex.currentIndex];
-          return InkWell(
-            onTap: () {
-              final blogUrl = currentImage['blog'];
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => WebViewScreen(
-                    url: blogUrl,
-                  ),
-                ),
-              );
-            },
-            child: BlogButton(),
-          );
-        } else {
-          // Return a fallback widget or simply an empty Container if the index is out of bounds.
-          return Container();
-        }
-      },
-    ),
-  ),
-),
-
+                                  final currentImage =
+                                      imageData[currentIndex.currentIndex];
+                                  return InkWell(
+                                    onTap: () {
+                                      final blogUrl = currentImage['blog'];
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => WebViewScreen(
+                                            url: blogUrl,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: BlogButton(),
+                                  );
+                                } else {
+                                  // Return a fallback widget or simply an empty Container if the index is out of bounds.
+                                  return Container();
+                                }
+                              },
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

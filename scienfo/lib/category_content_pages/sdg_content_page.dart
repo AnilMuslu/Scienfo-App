@@ -28,45 +28,28 @@ class _SDGContentPageState extends State<SDGContentPage> {
 
   Set<String> favoriteImages = {};
 
-  /*
-  void initState() {
-    super.initState();
-
-    final user =
-        Provider.of<AuthenticationService>(context, listen: false).user;
-    if (user != null) {
-      firebaseService.getFavorites(user.uid).then((favorites) {
-        setState(() {
-          favoriteImages = Set<String>.from(favorites);
-        });
-      });
-    }
-
-    // ... Existing code ...
-  }
-  */
-
   @override
-Widget build(BuildContext context) {
-  return StreamBuilder<List<Map<String, dynamic>>>(
-    stream: firebaseService.getSdgImagesStreams(),
-    builder: (BuildContext context,
-        AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        print("StreamBuilder is in waiting state");
+  Widget build(BuildContext context) {
+    return StreamBuilder<List<Map<String, dynamic>>>(
+      stream: firebaseService.getSdgImagesStreams(),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          print("StreamBuilder is in waiting state");
 
-        return Center(child: CircularProgressIndicator());
-      } else if (snapshot.hasError) {
-        print("StreamBuilder encountered an error: ${snapshot.error}");
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          print("StreamBuilder encountered an error: ${snapshot.error}");
 
-        return Text('Error: ${snapshot.error}');
-      } else if (snapshot.connectionState == ConnectionState.active &&
-                 snapshot.hasData && // make sure the snapshot contains data
-                 snapshot.data!.isNotEmpty) { // make sure the data is not empty
-        print("StreamBuilder is active");
+          return Text('Error: ${snapshot.error}');
+        } else if (snapshot.connectionState == ConnectionState.active &&
+            snapshot.hasData && // make sure the snapshot contains data
+            snapshot.data!.isNotEmpty) {
+          // make sure the data is not empty
+          print("StreamBuilder is active");
 
-        List<Map<String, dynamic>> imageData = snapshot.data!;
-        print("SNAPSHOT: $snapshot");
+          List<Map<String, dynamic>> imageData = snapshot.data!;
+          print("SNAPSHOT: $snapshot");
 
           return Scaffold(
               backgroundColor: const Color(0xffffffff),
@@ -115,24 +98,24 @@ Widget build(BuildContext context) {
                         ExitIcon(),
                   ),
                   Pinned.fromPins(
-                    Pin(start: 23.0, end: 29.0),
+                    Pin(start: 10.0, end: 29.0),
                     Pin(size: 114.0, end: 94.0),
                     child: Stack(
                       children: <Widget>[
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: SizedBox(
-                              width: 290.0,
-                              height: 21.0,
+                              width: 335.0,
+                              height: 50.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
                                   if (CurrentImageIndex.currentIndex <
                                       imageData.length) {
-                                    return LabelTextField(
-                                        documentId: imageData[CurrentImageIndex
-                                            .currentIndex]["id"]);
+                                  return LabelTextField(
+                                      documentId: imageData[CurrentImageIndex
+                                          .currentIndex]["id"]);
                                   } else {
                                     // handle the situation when index is out of range
                                     // return an empty Container (or any other widget of your choice)
@@ -141,60 +124,6 @@ Widget build(BuildContext context) {
                                 },
                               )),
                         ),
-                        /*
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Consumer<CurrentImageIndex>(
-                              builder: (context, currentIndex, _) {
-                            final currentImage =
-                                imageData[currentIndex.currentIndex];
-                            return IconButton(
-                              icon: favoriteImages.contains(currentImage['id'])
-                                  ? Icon(Icons.favorite)
-                                  : Icon(Icons.favorite_border),
-                              onPressed: () {
-                                final user = Provider.of<AuthenticationService>(
-                                        context,
-                                        listen: false)
-                                    .user;
-                                if (user == null) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text('Authentication Required'),
-                                        content: Text(
-                                            'To use this function, please register or login'),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            child: Text('OK'),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  setState(() {
-                                    if (favoriteImages
-                                        .contains(currentImage['id'])) {
-                                      favoriteImages.remove(currentImage['id']);
-                                      firebaseService.updateFavorite(
-                                          user.uid, currentImage['id'], false);
-                                    } else {
-                                      favoriteImages.add(currentImage['id']);
-                                      firebaseService.updateFavorite(
-                                          user.uid, currentImage['id'], true);
-                                    }
-                                  });
-                                }
-                              },
-                            );
-                          }),
-                        ),
-                        */
                         Align(
                           alignment: Alignment.bottomRight,
                           child: SizedBox(

@@ -11,11 +11,11 @@ class LabelTextField extends StatelessWidget {
         .doc(documentId)
         .snapshots();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
-        stream: fetchContent(), 
+        stream: fetchContent(),
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -23,21 +23,39 @@ class LabelTextField extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Text("Error: ${snapshot.error}");
           } else {
-            // Check if the data exists before performing the cast
             if (snapshot.data!.exists) {
               Map<String, dynamic> data =
                   snapshot.data!.data() as Map<String, dynamic>;
-              return Text(
-                data["category"], // fetch 'category' field from the data
-                style: TextStyle(
-                  fontFamily: 'Algerian',
-                  fontSize: 19,
-                  color: const Color(0xff000000),
-                  height: 1.0526315789473684,
-                ),
-                textHeightBehavior:
-                    TextHeightBehavior(applyHeightToFirstAscent: false),
-                softWrap: false,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${data["category"]}', // Display 'id' field from the data
+                    style: const TextStyle(
+                      fontFamily: 'Algerian',
+                      fontSize: 21,
+                      color: Colors.black,
+                      height: 1.1526315789473684,
+                      fontWeight: FontWeight.bold
+                    ),
+                    textHeightBehavior:
+                        TextHeightBehavior(applyHeightToFirstAscent: false),
+                    softWrap: false,
+                  ),
+                  Text(
+                    '${data["user_profile"]}', // Display 'user_profile' field from the data
+                    style: TextStyle(
+                      fontFamily: 'Algerian',
+                      fontSize: 21,
+                      color: Colors.black,
+                      height: 1.0526315789473684,
+                      fontWeight: FontWeight.bold
+                    ),
+                    textHeightBehavior:
+                        TextHeightBehavior(applyHeightToFirstAscent: false),
+                    softWrap: false,
+                  ),
+                ],
               );
             } else {
               return Text("No data found");

@@ -95,79 +95,30 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                         ExitIcon(),
                   ),
                   Pinned.fromPins(
-                    Pin(start: 23.0, end: 29.0),
+                    Pin(start: 10.0, end: 29.0),
                     Pin(size: 114.0, end: 94.0),
                     child: Stack(
                       children: <Widget>[
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: SizedBox(
-                              width: 288.0,
-                              height: 21.0,
+                              width: 335.0,
+                              height: 50.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
-                                  return LabelTextField(
-                                      documentId: imageData[CurrentImageIndex
-                                          .currentIndex]["id"]);
+                                  if (CurrentImageIndex.currentIndex <
+                                      imageData.length) {
+                                    return LabelTextField(
+                                        documentId: imageData[CurrentImageIndex
+                                            .currentIndex]["id"]);
+                                  } else {
+                                    return Container();
+                                  }
                                 },
                               )),
                         ),
-                        /*
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Consumer<CurrentImageIndex>(
-                              builder: (context, currentIndex, _) {
-                            final currentImage =
-                                imageData[currentIndex.currentIndex];
-                            return IconButton(
-                              icon: favoriteImages.contains(currentImage['id'])
-                                  ? Icon(Icons.favorite)
-                                  : Icon(Icons.favorite_border),
-                              onPressed: () {
-                                final user = Provider.of<AuthenticationService>(
-                                        context,
-                                        listen: false)
-                                    .user;
-                                if (user == null) {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text('Authentication Required'),
-                                        content: Text(
-                                            'To use this function, please register or login'),
-                                        actions: <Widget>[
-                                          TextButton(
-                                            child: Text('OK'),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  setState(() {
-                                    if (favoriteImages
-                                        .contains(currentImage['id'])) {
-                                      favoriteImages.remove(currentImage['id']);
-                                      firebaseService.updateFavorite(
-                                          user.uid, currentImage['id'], false);
-                                    } else {
-                                      favoriteImages.add(currentImage['id']);
-                                      firebaseService.updateFavorite(
-                                          user.uid, currentImage['id'], true);
-                                    }
-                                  });
-                                }
-                              },
-                            );
-                          }),
-                        ),
-                        */
                         Align(
                           alignment: Alignment.bottomRight,
                           child: SizedBox(
