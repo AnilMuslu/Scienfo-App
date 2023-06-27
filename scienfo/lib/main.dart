@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               return ScienfoRegisterPage();
             } else {
               print('User is logged in. Navigating to HomePage');
-              return ScienfoContentPage1();  // your homepage widget when user is logged in
+              return ScienfoContentPage1(); // your homepage widget when user is logged in
             }
           },
         ),
@@ -53,15 +53,17 @@ class AuthenticationService extends ChangeNotifier {
   User? _user;
   String? _userType;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;  // instance of Firestore
+  final FirebaseFirestore _firestore =
+      FirebaseFirestore.instance; // instance of Firestore
 
   AuthenticationService() {
     _auth.authStateChanges().listen((User? user) async {
       print('Auth state changed. User is now: $user');
       _user = user;
-      
+
       if (user != null) {
-        _userType = await _getUserType(user.uid);  // fetch userType from Firestore
+        _userType =
+            await _getUserType(user.uid); // fetch userType from Firestore
       } else {
         _userType = null;
       }
@@ -76,13 +78,20 @@ class AuthenticationService extends ChangeNotifier {
   Future<String?> _getUserType(String uid) async {
     // Retrieve the document from Firestore
     DocumentSnapshot doc = await _firestore.collection('users').doc(uid).get();
-    return doc.exists ? doc.get('userType') as String : null;
+
+    if (doc.exists) {
+      var userType = doc.get('userType');
+      if (userType != null && userType is String) {
+        return userType;
+      }
+    }
+    return null;
   }
 
   Future<void> signOut() async {
     try {
       await _auth.signOut();
-      _user = null;  // set user to null after signing out
+      _user = null; // set user to null after signing out
       _userType = null; // set userType to null after signing out
       print('User signed out.');
       notifyListeners(); // notify listeners about user sign out

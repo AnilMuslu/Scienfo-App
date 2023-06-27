@@ -40,14 +40,15 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
           Pinned.fromPins(
             Pin(size: 150.0, middle: 0.5),
             Pin(size: 153.4, start: 106.6),
-            child: user_image(),
+            child: UserImage(
+                uid: FirebaseAuth.instance.currentUser?.uid ??
+                    'defaultUid'), // Add the check here
           ),
           Pinned.fromPins(
             Pin(size: 7.0, end: 20.0),
             Pin(size: 34.0, start: 53.0),
             child: ExitIcon(),
           ),
-          
           Transform.translate(
             offset: Offset(0.0, 367.0),
             child: Container(
@@ -56,7 +57,6 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
               color: const Color(0xff707070),
             ),
           ),
-          
           Pinned.fromPins(
             Pin(size: 170.0, middle: 0.5),
             Pin(size: 50.0, middle: 0.5),
@@ -65,7 +65,6 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-         
           Pinned.fromPins(
             Pin(size: 170.0, middle: 0.5),
             Pin(size: 50.0, middle: 0.7),
@@ -85,8 +84,11 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                   selectedUserType = newValue!;
                 });
               },
-              items: <String>['#Pre-school', '#Primary-school', '#Middle-school']
-                  .map<DropdownMenuItem<String>>((String value) {
+              items: <String>[
+                '#Pre-school',
+                '#Primary-school',
+                '#Middle-school'
+              ].map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(
@@ -116,6 +118,11 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                           child: Text('OK'),
                           onPressed: () {
                             Navigator.of(context).pop();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ScienfoContentPage1()),
+                            );
                           },
                         ),
                       ],

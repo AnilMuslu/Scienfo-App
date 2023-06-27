@@ -126,22 +126,27 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                             height: 40.0,
                             child: Consumer<CurrentImageIndex>(
                               builder: (context, currentIndex, _) {
-                                final currentImage =
-                                    imageData[currentIndex.currentIndex];
-                                return InkWell(
-                                  onTap: () {
-                                    final blogUrl = currentImage['blog'];
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => WebViewScreen(
-                                          url: blogUrl,
+                                if (currentIndex.currentIndex <
+                                    imageData.length) {
+                                  final currentImage =
+                                      imageData[currentIndex.currentIndex];
+                                  return InkWell(
+                                    onTap: () {
+                                      final blogUrl = currentImage['blog'];
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => WebViewScreen(
+                                            url: blogUrl,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  child: BlogButton(),
-                                );
+                                      );
+                                    },
+                                    child: BlogButton(),
+                                  );
+                                } else {
+                                  return Container(); // or any other widget you want to show when the index is out of range
+                                }
                               },
                             ),
                           ),

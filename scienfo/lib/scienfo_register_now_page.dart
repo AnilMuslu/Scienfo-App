@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './register_now_button.dart';
@@ -9,7 +8,6 @@ import './scienfo_logo.dart';
 import './welcome_text.dart';
 import './email_input.dart';
 import './password_input.dart';
-import './middle_school_button.dart';
 
 class ScienfoRegisterNowPage extends StatefulWidget {
   ScienfoRegisterNowPage({Key? key}) : super(key: key);
@@ -23,18 +21,12 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
   final passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  List<String> userTypeItems = [
-    "#Pre-school",
-    "#Primary-school",
-    "#Middle-school"
-  ];
-
   String? selectedUserType;
 
   @override
   void initState() {
     super.initState();
-    selectedUserType = userTypeItems.first; // update this line
+    selectedUserType = null; // update this line
   }
 
   void registerUser(BuildContext context) async {
