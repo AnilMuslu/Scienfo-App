@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scienfo/models/current_image_index.dart';
 import 'package:scienfo/scienfo_content_page1.dart';
-import 'package:scienfo/scienfo_register_page.dart'; // assuming this is your homepage when user is logged in
+import 'package:scienfo/scienfo_register_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -70,6 +70,22 @@ class AuthenticationService extends ChangeNotifier {
 
       notifyListeners();
     });
+  }
+
+  Stream<String?> get userTypeStream {
+    if (_user == null) {
+      // _user is null, so we return a Stream that emits null once and then completes
+      return Stream.value(null);
+    } else {
+      // _user is not null, so we can safely access its uid
+      return _firestore
+          .collection('users')
+          .doc(_user!.uid)
+          .snapshots()
+          .map((snapshot) {
+        return snapshot.get('userType') as String?;
+      });
+    }
   }
 
   User? get user => _user;

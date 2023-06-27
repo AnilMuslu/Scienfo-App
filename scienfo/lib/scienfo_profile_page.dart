@@ -23,12 +23,28 @@ class ScienfoProfilePage extends StatefulWidget {
 class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
   String selectedUserType = '#Pre-school'; // default value
   final firestoreInstance = FirebaseFirestore.instance;
+  String? currentUserType;
+
+  Future<String?> getUserType() async {
+    final doc = await firestoreInstance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    return doc.get('userType');
+  }
 
   void updateUserType(String userId, String userType) async {
-    await firestoreInstance
-        .collection('users')
-        .doc(userId)
-        .update({'userType': userType});
+    if (userType == '#General') {
+      await firestoreInstance
+          .collection('users')
+          .doc(userId)
+          .update({'userType': null});
+    } else {
+      await firestoreInstance
+          .collection('users')
+          .doc(userId)
+          .update({'userType': userType});
+    }
   }
 
   @override
@@ -58,11 +74,26 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
             ),
           ),
           Pinned.fromPins(
-            Pin(size: 170.0, middle: 0.5),
+            Pin(size: 200.0, middle: 0.5),
             Pin(size: 50.0, middle: 0.5),
-            child: Text(
-              'Change Profile Type',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            child: FutureBuilder<String?>(
+              future: getUserType(),
+              builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+                final userType = snapshot.data ?? '#General';
+
+                return RichText(
+                  text: TextSpan(
+                    text: 'Change profile type (current: ',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: userType,
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      TextSpan(text: ')'),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
           Pinned.fromPins(
@@ -87,7 +118,8 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
               items: <String>[
                 '#Pre-school',
                 '#Primary-school',
-                '#Middle-school'
+                '#Middle-school',
+                '#General'
               ].map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
