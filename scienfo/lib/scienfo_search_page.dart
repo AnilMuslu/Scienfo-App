@@ -6,7 +6,6 @@ import 'package:scienfo/category_content_pages/engineering_content_page.dart';
 import 'package:scienfo/category_content_pages/sdg_content_page.dart';
 import 'package:scienfo/category_content_pages/sports_content_page.dart';
 import 'package:scienfo/category_content_pages/technology_content_page.dart';
-import './search_input.dart';
 import './science_search_button.dart';
 import './technology_search_button.dart';
 import './engineering_search_button.dart';
@@ -37,12 +36,28 @@ class ScienfoSearchPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           Pinned.fromPins(
-            Pin(start: 8.5, end: 35.7),
-            Pin(size: 43.7, start: 47.0),
-            child:
-                // Adobe XD layer: 'Search_input' (component)
-                SearchInput(),
-          ),
+              Pin(start: 8.5), Pin(size: 43.7, start: 47.0),
+              child: Container(
+                width: 360.0,
+                height: 40.0,
+                child: Stack(
+                  children: <Widget>[
+                    Center(
+                      child: Image.asset(
+                        'assets/images/blue_paint_brush_stroke.png',
+                        height: 40,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        "Choose a category",
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
+              )),
           Padding(
             padding: EdgeInsets.fromLTRB(8.5, 105.7, 17.5, 81.0),
             child: Stack(
