@@ -35,8 +35,7 @@ class ScienfoSearchPage extends StatelessWidget {
       backgroundColor: const Color(0xfffdb25c),
       body: Stack(
         children: <Widget>[
-          Pinned.fromPins(
-              Pin(start: 8.5), Pin(size: 43.7, start: 47.0),
+          Pinned.fromPins(Pin(start: 8.5), Pin(size: 43.7, start: 47.0),
               child: Container(
                 width: 360.0,
                 height: 40.0,
@@ -52,7 +51,7 @@ class ScienfoSearchPage extends StatelessWidget {
                     Center(
                       child: Text(
                         "Choose a category",
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        style: TextStyle(color: Colors.black, fontSize: 18),
                       ),
                     )
                   ],
