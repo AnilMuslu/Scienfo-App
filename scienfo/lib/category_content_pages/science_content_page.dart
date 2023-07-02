@@ -28,24 +28,6 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
 
   Set<String> favoriteImages = {};
 
-  /*
-  void initState() {
-    super.initState();
-
-    final user =
-        Provider.of<AuthenticationService>(context, listen: false).user;
-    if (user != null) {
-      firebaseService.getFavorites(user.uid).then((favorites) {
-        setState(() {
-          favoriteImages = Set<String>.from(favorites);
-        });
-      });
-    }
-
-    // ... Existing code ...
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
@@ -106,22 +88,20 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                     },
                   ),
                   Pinned.fromPins(
-                    Pin(size: 7.0, end: 20.0),
-                    Pin(size: 34.0, start: 53.0),
-                    child:
-                        // Adobe XD layer: 'Option icon' (component)
-                        ExitIcon(),
+                    Pin(size: 50.0, end: 0.0),
+                    Pin(size: 50.0, start: 40.0),
+                    child: ExitIcon(),
                   ),
                   Pinned.fromPins(
-                    Pin(start: 23.0, end: 29.0),
+                    Pin(start: 10.0, end: 29.0),
                     Pin(size: 114.0, end: 94.0),
                     child: Stack(
                       children: <Widget>[
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: SizedBox(
-                              width: 269.0,
-                              height: 21.0,
+                              width: 335.0,
+                              height: 50.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
@@ -132,7 +112,7 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                                         documentId: imageData[CurrentImageIndex
                                             .currentIndex]["id"]);
                                   } else {
-                                          return Container();
+                                    return Container();
                                   }
                                 },
                               )),
@@ -163,7 +143,7 @@ class _ScienceContentPageState extends State<ScienceContentPage> {
                                     child: BlogButton(),
                                   );
                                 } else {
-                                      return Container();
+                                  return Container();
                                 }
                               },
                             ),
