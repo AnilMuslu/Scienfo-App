@@ -112,12 +112,15 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                             },
                           ),
                           Pinned.fromPins(
-                            Pin(size: 7.0, end: 20.0),
-                            Pin(size: 34.0, start: 53.0),
-                            child:
-                                // Adobe XD layer: 'Option icon' (component)
-                                ExitIcon(),
+                            Pin(
+                                size: 50.0,
+                                end: 0.0), // increase the size as necessary
+                            Pin(
+                                size: 50.0,
+                                start: 40.0), // increase the size as necessary
+                            child: ExitIcon(),
                           ),
+
                           Pinned.fromPins(
                             Pin(start: 10.0, end: 29.0),
                             Pin(size: 114.0, end: 94.0),

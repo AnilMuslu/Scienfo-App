@@ -97,8 +97,8 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
             ),
           ),
           Pinned.fromPins(
-            Pin(size: 7.0, end: 20.0),
-            Pin(size: 34.0, start: 53.0),
+            Pin(size: 50.0, end: 0.0), // increase the size as necessary
+            Pin(size: 50.0, start: 40.0), // increase the size as necessary
             child: ExitIcon(),
           ),
           Pinned.fromPins(

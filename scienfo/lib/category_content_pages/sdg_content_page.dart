@@ -91,11 +91,9 @@ class _SDGContentPageState extends State<SDGContentPage> {
                     },
                   ),
                   Pinned.fromPins(
-                    Pin(size: 7.0, end: 20.0),
-                    Pin(size: 34.0, start: 53.0),
-                    child:
-                        // Adobe XD layer: 'Option icon' (component)
-                        ExitIcon(),
+                    Pin(size: 50.0, end: 0.0),
+                    Pin(size: 50.0, start: 40.0),
+                    child: ExitIcon(),
                   ),
                   Pinned.fromPins(
                     Pin(start: 10.0, end: 29.0),
@@ -113,9 +111,9 @@ class _SDGContentPageState extends State<SDGContentPage> {
                                 builder: (context, CurrentImageIndex, _) {
                                   if (CurrentImageIndex.currentIndex <
                                       imageData.length) {
-                                  return LabelTextField(
-                                      documentId: imageData[CurrentImageIndex
-                                          .currentIndex]["id"]);
+                                    return LabelTextField(
+                                        documentId: imageData[CurrentImageIndex
+                                            .currentIndex]["id"]);
                                   } else {
                                     // handle the situation when index is out of range
                                     // return an empty Container (or any other widget of your choice)

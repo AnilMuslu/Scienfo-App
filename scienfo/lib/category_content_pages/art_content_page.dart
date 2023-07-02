@@ -106,11 +106,11 @@ class _ArtContentPageState extends State<ArtContentPage> {
                     },
                   ),
                   Pinned.fromPins(
-                    Pin(size: 7.0, end: 20.0),
-                    Pin(size: 34.0, start: 53.0),
-                    child:
-                        // Adobe XD layer: 'Option icon' (component)
-                        ExitIcon(),
+                    Pin(size: 50.0, end: 0.0), // increase the size as necessary
+                    Pin(
+                        size: 50.0,
+                        start: 40.0), // increase the size as necessary
+                    child: ExitIcon(),
                   ),
                   Pinned.fromPins(
                     Pin(start: 23.0, end: 29.0),
@@ -132,7 +132,7 @@ class _ArtContentPageState extends State<ArtContentPage> {
                                         documentId: imageData[CurrentImageIndex
                                             .currentIndex]["id"]);
                                   } else {
-                                          return Container();
+                                    return Container();
                                   }
                                 },
                               )),
@@ -163,7 +163,7 @@ class _ArtContentPageState extends State<ArtContentPage> {
                                     child: BlogButton(),
                                   );
                                 } else {
-                                      return Container();
+                                  return Container();
                                 }
                               },
                             ),

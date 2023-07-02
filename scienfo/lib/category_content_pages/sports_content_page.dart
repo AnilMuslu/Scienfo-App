@@ -88,11 +88,9 @@ class _SportsContentPageState extends State<SportsContentPage> {
                     },
                   ),
                   Pinned.fromPins(
-                    Pin(size: 7.0, end: 20.0),
-                    Pin(size: 34.0, start: 53.0),
-                    child:
-                        // Adobe XD layer: 'Option icon' (component)
-                        ExitIcon(),
+                    Pin(size: 50.0, end: 0.0),
+                    Pin(size: 50.0, start: 40.0),
+                    child: ExitIcon(),
                   ),
                   Pinned.fromPins(
                     Pin(start: 10.0, end: 29.0),
@@ -108,15 +106,15 @@ class _SportsContentPageState extends State<SportsContentPage> {
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
                                 builder: (context, CurrentImageIndex, _) {
-          if (CurrentImageIndex.currentIndex <
-              imageData.length) {
-                                  return LabelTextField(
-                                      documentId: imageData[CurrentImageIndex
-                                          .currentIndex]["id"]);
-          } else {
-            // Return a fallback widget or simply an empty Container if the index is out of bounds.
-            return Container();
-          }
+                                  if (CurrentImageIndex.currentIndex <
+                                      imageData.length) {
+                                    return LabelTextField(
+                                        documentId: imageData[CurrentImageIndex
+                                            .currentIndex]["id"]);
+                                  } else {
+                                    // Return a fallback widget or simply an empty Container if the index is out of bounds.
+                                    return Container();
+                                  }
                                 },
                               )),
                         ),
@@ -127,7 +125,8 @@ class _SportsContentPageState extends State<SportsContentPage> {
                             height: 40.0,
                             child: Consumer<CurrentImageIndex>(
                               builder: (context, currentIndex, _) {
-        if (currentIndex.currentIndex < imageData.length) {
+                                if (currentIndex.currentIndex <
+                                    imageData.length) {
                                   final currentImage =
                                       imageData[currentIndex.currentIndex];
                                   return InkWell(
