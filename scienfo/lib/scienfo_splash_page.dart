@@ -17,7 +17,7 @@ class ScienfoSplashPage extends StatelessWidget {
             Pin(size: 215.0, middle: 0.3471),
             child:
                 // Adobe XD layer: 'ScienfoLogo' (component)
-                scienfo_logo(),
+                ScienfoLogo(),
           ),
         ],
       ),

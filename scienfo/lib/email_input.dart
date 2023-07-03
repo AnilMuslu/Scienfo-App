@@ -17,9 +17,9 @@ class EmailInput extends StatelessWidget {
             controller: emailController,
             style: TextStyle(
               fontFamily: 'Roboto',
-              fontSize: 18,
+              fontSize: 16,
               color: Colors.white,
-              height: 1.2142857142857142,
+              height: 1.9,
             ),
             decoration: InputDecoration(
               hintText: 'Enter email address',

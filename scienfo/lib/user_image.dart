@@ -49,7 +49,7 @@ Widget build(BuildContext context) {
                     BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
               ),
             ),
-            SizedBox(height: 10), // you can adjust this as per your requirement
+            SizedBox(height: 5), // you can adjust this as per your requirement
             Text(
               snapshot.data ?? 'Guest', // Displaying the user's email
               style: TextStyle(

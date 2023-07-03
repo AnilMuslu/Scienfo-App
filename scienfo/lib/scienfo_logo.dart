@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:adobe_xd/pinned.dart';
 import 'package:adobe_xd/blend_mask.dart';
 
-class scienfo_logo extends StatelessWidget {
-  scienfo_logo({
+class ScienfoLogo extends StatelessWidget {
+  ScienfoLogo({
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Pinned.fromPins(
-          Pin(start: 0.0, end: 0.0),
-          Pin(size: 84.0, start: 0.0),
-          child: Text(
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
             'SCIENFO',
             style: TextStyle(
               fontFamily: 'Roboto',
-              fontSize: 64,
+              fontSize: 50,
               color: const Color(0xffffffff),
               fontWeight: FontWeight.w700,
               height: 0.34375,
@@ -26,28 +25,24 @@ class scienfo_logo extends StatelessWidget {
                 TextHeightBehavior(applyHeightToFirstAscent: false),
             softWrap: false,
           ),
-        ),
-        Align(
-          alignment: Alignment(-0.007, 1.0),
-          child:
-              // Adobe XD layer: 'Stem logo png' (shape)
-              BlendMask(
-            blendMode: BlendMode.srcOver, // Change this line
+          SizedBox(height: 20), // You can adjust this value for spacing
+          // Adobe XD layer: 'Stem logo png' (shape)
+          BlendMask(
+            blendMode: BlendMode.srcOver,
             child: Container(
               width: 125.0,
               height: 131.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image:
-                      const AssetImage('assets/images/scienfoLogo2.png'),
+                  image: const AssetImage('assets/images/scienfoLogo2.png'),
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(56.0),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

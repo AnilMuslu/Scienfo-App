@@ -59,14 +59,12 @@ class ScienfoSearchPage extends StatelessWidget {
                     ],
                   ),
                 )),
-            Padding(
-              padding: EdgeInsets.fromLTRB(8.5, 105.7, 17.5, 81.0),
-              child: Stack(
-                children: <Widget>[
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, start: 0.0),
-                    child: PageLink(
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(8.5, 105.7, 17.5, 81.0),
+                child: Column(
+                  children: <Widget>[
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => ScienceContentPage(),
@@ -74,11 +72,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: ScienceSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, start: 83.1),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => TechnologyContentPage(),
@@ -86,11 +81,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: TechnologySearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, middle: 0.25),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => EngineeringContentPage(),
@@ -98,11 +90,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: EngineeringSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, middle: 0.375),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => MathematicsContentPage(),
@@ -110,11 +99,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: MathematicsSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, middle: 0.5),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => ArtContentPage(),
@@ -122,11 +108,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: ArtSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, middle: 0.625),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => HealthContentPage(),
@@ -134,11 +117,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: HealthSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, middle: 0.75),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => NutritionContentPage(),
@@ -146,11 +126,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: NutritionSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, end: 83.1),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => SportsContentPage(),
@@ -158,11 +135,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: SportsSearchButton(),
                     ),
-                  ),
-                  Pinned.fromPins(
-                    Pin(start: 0.0, end: 0.0),
-                    Pin(size: 63.4, end: 0.0),
-                    child: PageLink(
+                    SizedBox(height: 10),
+                    PageLink(
                       links: [
                         PageLinkInfo(
                           pageBuilder: () => SDGContentPage(),
@@ -170,8 +144,8 @@ class ScienfoSearchPage extends StatelessWidget {
                       ],
                       child: SDGSearchButton(),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Pinned.fromPins(

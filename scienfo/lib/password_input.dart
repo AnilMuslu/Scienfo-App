@@ -11,23 +11,20 @@ class PasswordInput extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Pinned.fromPins(
-          Pin(size:0),
+          Pin(size: 0),
           Pin(size: 50, start: 0.0),
           child: TextField(
             controller: passwordController,
-            obscureText: true,    // make password field obfuscated
+            obscureText: true, // make password field obfuscated
             style: TextStyle(
               fontFamily: 'Source Sans Pro',
-              fontSize: 18,
+              fontSize: 16,
               color: Color(0xffffffff),
-              height: 0.85,
+              height: 1.9,
             ),
             decoration: InputDecoration(
-              hintText: "Password",
-              hintStyle: TextStyle(
-                color: Colors.white
-              )
-              ),
+                hintText: "Password",
+                hintStyle: TextStyle(color: Colors.white)),
           ),
         ),
         Pinned.fromPins(
@@ -41,25 +38,6 @@ class PasswordInput extends StatelessWidget {
             fit: BoxFit.fill,
           ),
         ),
-        
-        /*
-        Pinned.fromPins(
-          Pin(size: 62.0, start: 0.5),
-          Pin(size: 28.0, end: 0.0),
-          child: Text(
-            '……….',
-            style: TextStyle(
-              fontFamily: 'Source Sans Pro',
-              fontSize: 20,
-              color: const Color(0xffffffff),
-              height: 0.85,
-            ),
-            textHeightBehavior:
-                TextHeightBehavior(applyHeightToFirstAscent: false),
-            softWrap: false,
-          ),
-        ),
-        */
       ],
     );
   }

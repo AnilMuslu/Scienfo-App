@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scienfo/models/current_image_index.dart';
@@ -12,6 +13,12 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  statusBarColor: Colors.transparent, // sets the color of status bar to transparent
+  statusBarIconBrightness: Brightness.dark, // sets the color of status bar icons to dark
+));
+
+
 }
 
 class MyApp extends StatelessWidget {

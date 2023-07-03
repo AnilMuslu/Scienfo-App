@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import 'package:scienfo/first_login_button.dart';
 import 'package:scienfo/scienfo_login_page.dart';
+import 'package:scienfo/scienfo_logo.dart';
 import './register_button.dart';
 import './scienfo_register_now_page.dart';
 import 'package:adobe_xd/page_link.dart';
 import './login_as_guest_button.dart';
 import './scienfo_content_page1.dart';
-import './scienfo_logo.dart';
 import './welcome_text.dart';
 import './gradient_background.dart';
 
@@ -27,7 +27,7 @@ class ScienfoRegisterPage extends StatelessWidget {
           children: <Widget>[
             Pinned.fromPins(
               Pin(start: 37.0, end: 47.0),
-              Pin(size: 205.0, end: 129.0),
+              Pin(size: 205.0, end: 25.0),
               child: Stack(
                 children: <Widget>[
                   Pinned.fromPins(
@@ -90,10 +90,10 @@ class ScienfoRegisterPage extends StatelessWidget {
             ),
             Pinned.fromPins(
               Pin(start: 76.0, end: 76.0),
-              Pin(size: 215.0, start: 100.0),
+              Pin(size: 215.0, start: 40.0),
               child:
                   // Adobe XD layer: 'ScienfoLogo' (component)
-                  scienfo_logo(),
+                  ScienfoLogo(),
             ),
             Pinned.fromPins(
               Pin(size: 173.0, start: 37.0),

@@ -57,14 +57,14 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
           children: <Widget>[
             Pinned.fromPins(
               Pin(size: 150.0, middle: 0.5),
-              Pin(size: 153.4, start: 54.6),
+              Pin(size: 153.4, start: 40),
               child: UserImage(
                   uid: FirebaseAuth.instance.currentUser?.uid ??
                       'defaultUid'), // Add the check here
             ),
             Pinned.fromPins(
               Pin(start: 10.0, end: 10.0),
-              Pin(size: 50.0, middle: 0.25),
+              Pin(size: 50.0, middle: 0.3),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
