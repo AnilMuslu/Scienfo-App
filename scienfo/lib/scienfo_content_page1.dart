@@ -1,29 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scienfo/models/current_image_index.dart';
-import 'package:scienfo/scienfo_content_page1.dart';
-import 'package:scienfo/scienfo_register_page.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:scienfo/services/firebase_service.dart';
 import 'main.dart';
 import 'package:adobe_xd/adobe_xd.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:scienfo/label_text_field.dart';
 import 'package:scienfo/exit_icon.dart';
 import 'package:scienfo/profile_icon_button.dart';
 import 'package:scienfo/scienfo_profile_page.dart';
 import 'package:scienfo/search_icon_button.dart';
-import 'package:scienfo/services/firebase_service.dart';
-import 'package:scienfo/models/current_image_index.dart';
 import 'package:scienfo/services/web_view_screen.dart';
 import 'blog_button.dart';
 import 'home_icon_button.dart';
-import 'main.dart';
 import 'scienfo_search_page.dart';
 
 class ScienfoContentPage1 extends StatefulWidget {

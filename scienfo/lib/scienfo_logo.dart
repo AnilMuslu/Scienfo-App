@@ -32,14 +32,14 @@ class scienfo_logo extends StatelessWidget {
           child:
               // Adobe XD layer: 'Stem logo png' (shape)
               BlendMask(
-            blendMode: BlendMode.darken,
+            blendMode: BlendMode.srcOver, // Change this line
             child: Container(
               width: 125.0,
               height: 131.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image:
-                      const AssetImage('assets/images/scienfo_logo_image.png'),
+                      const AssetImage('assets/images/scienfoLogo2.png'),
                   fit: BoxFit.fill,
                 ),
                 borderRadius: BorderRadius.circular(56.0),

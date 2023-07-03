@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scienfo/scienfo_content_page1.dart';
-import './scienfo_login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInButton extends StatelessWidget {

@@ -120,8 +120,8 @@ class _ArtContentPageState extends State<ArtContentPage> {
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: SizedBox(
-                              width: 269.0,
-                              height: 21.0,
+                              width: 335.0,
+                              height: 50.0,
                               child:
                                   // Adobe XD layer: 'Label_textField' (component)
                                   Consumer<CurrentImageIndex>(
@@ -132,6 +132,7 @@ class _ArtContentPageState extends State<ArtContentPage> {
                                         documentId: imageData[CurrentImageIndex
                                             .currentIndex]["id"]);
                                   } else {
+                                    // Return a fallback widget or simply an empty Container if the index is out of bounds.
                                     return Container();
                                   }
                                 },

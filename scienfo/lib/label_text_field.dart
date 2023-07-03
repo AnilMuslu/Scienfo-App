@@ -32,12 +32,11 @@ class LabelTextField extends StatelessWidget {
                   Text(
                     '${data["category"]}', // Display 'id' field from the data
                     style: const TextStyle(
-                      fontFamily: 'Algerian',
-                      fontSize: 21,
-                      color: Colors.black,
-                      height: 1.1526315789473684,
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontFamily: 'Algerian',
+                        fontSize: 21,
+                        color: Colors.black,
+                        height: 1.1526315789473684,
+                        fontWeight: FontWeight.bold),
                     textHeightBehavior:
                         TextHeightBehavior(applyHeightToFirstAscent: false),
                     softWrap: false,
@@ -45,12 +44,11 @@ class LabelTextField extends StatelessWidget {
                   Text(
                     '${data["user_profile"]}', // Display 'user_profile' field from the data
                     style: TextStyle(
-                      fontFamily: 'Algerian',
-                      fontSize: 21,
-                      color: Colors.black,
-                      height: 1.0526315789473684,
-                      fontWeight: FontWeight.bold
-                    ),
+                        fontFamily: 'Algerian',
+                        fontSize: 21,
+                        color: Colors.black,
+                        height: 1.0526315789473684,
+                        fontWeight: FontWeight.bold),
                     textHeightBehavior:
                         TextHeightBehavior(applyHeightToFirstAscent: false),
                     softWrap: false,

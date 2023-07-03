@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:adobe_xd/pinned.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserImage extends StatefulWidget {

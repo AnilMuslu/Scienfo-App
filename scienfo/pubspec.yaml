@@ -69,13 +69,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/content_image1.jpg
     - assets/images/profile_user_photo.png
-    - assets/images/scienfo_logo_image.png
     - assets/images/scienfo_logo.png
     - assets/images/sdg_search_image.png
-    - assets/images/sdg_search_photo.png
     - assets/images/blue_paint_brush_stroke.png
+    - assets/images/dcp.png
+    - assets/images/scienfoLogo2.png
     
 
 

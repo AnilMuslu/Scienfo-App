@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scienfo/models/current_image_index.dart';
 import 'package:scienfo/scienfo_content_page1.dart';
 import 'package:scienfo/scienfo_register_page.dart';
+import 'gradient_background.dart'; // Your GradientBackground class
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,16 +34,19 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
           useMaterial3: true,
         ),
-        home: Consumer<AuthenticationService>(
-          builder: (context, authService, _) {
-            if (authService.user == null) {
-              print('User is null. Navigating to ScienfoRegisterPage');
-              return ScienfoRegisterPage();
-            } else {
-              print('User is logged in. Navigating to HomePage');
-              return ScienfoContentPage1(); // your homepage widget when user is logged in
-            }
-          },
+        home: GradientBackground(
+          // Your GradientBackground widget
+          child: Consumer<AuthenticationService>(
+            builder: (context, authService, _) {
+              if (authService.user == null) {
+                print('User is null. Navigating to ScienfoRegisterPage');
+                return ScienfoRegisterPage();
+              } else {
+                print('User is logged in. Navigating to HomePage');
+                return ScienfoContentPage1(); // your homepage widget when user is logged in
+              }
+            },
+          ),
         ),
       ),
     );

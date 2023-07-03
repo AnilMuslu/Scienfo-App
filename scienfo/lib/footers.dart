@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import './scienfo_search_page.dart';
-import 'package:adobe_xd/page_link.dart';
-import 'package:adobe_xd/pinned.dart';
-import './scienfo_profile_page.dart';
 
 class Footers extends StatelessWidget {
   Footers({
