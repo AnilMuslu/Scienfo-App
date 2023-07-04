@@ -64,7 +64,6 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                         children: <Widget>[
                           PageView.builder(
                             scrollDirection: Axis.vertical,
-                            //physics: BouncingScrollPhysics(),
                             itemCount: imageData.length,
                             onPageChanged: (int index) {
                               Provider.of<CurrentImageIndex>(context,
@@ -108,7 +107,6 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                                 start: 40.0), // increase the size as necessary
                             child: ExitIcon(),
                           ),
-
                           Pinned.fromPins(
                             Pin(start: 10.0, end: 29.0),
                             Pin(size: 114.0, end: 94.0),
@@ -164,7 +162,7 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                                             child: BlogButton(),
                                           );
                                         } else {
-                                          return Container(); // or any other widget you want to show when the index is out of range
+                                          return Container();
                                         }
                                       },
                                     ),
@@ -253,7 +251,6 @@ class _ScienfoContentPage1State extends State<ScienfoContentPage1> {
                               ],
                             ),
                           )
-                          // ... More code here...
                         ],
                       ));
                 } else {

@@ -15,7 +15,6 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // Use GestureDetector instead of PageLink
       onTap: () async {
         try {
           UserCredential userCredential =

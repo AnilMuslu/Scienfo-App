@@ -54,13 +54,11 @@ class _EngineeringContentPageState extends State<EngineeringContentPage> {
                 children: <Widget>[
                   PageView.builder(
                     scrollDirection: Axis.vertical,
-                    //physics: BouncingScrollPhysics(),
                     itemCount: imageData.length,
                     onPageChanged: (int index) {
                       Provider.of<CurrentImageIndex>(context, listen: false)
                           .setIndex(index);
                     },
-
                     itemBuilder: (BuildContext context, int index) {
                       Map<String, dynamic> currentImage = imageData[index];
                       print("CURRENT IMAGE DATA: $currentImage");

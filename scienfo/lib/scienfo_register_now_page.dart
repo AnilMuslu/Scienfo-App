@@ -26,7 +26,7 @@ class _ScienfoRegisterNowPageState extends State<ScienfoRegisterNowPage> {
   @override
   void initState() {
     super.initState();
-    selectedUserType = null; // update this line
+    selectedUserType = null;
   }
 
   void registerUser(BuildContext context) async {

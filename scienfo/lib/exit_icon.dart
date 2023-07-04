@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scienfo/main.dart';
-import 'package:scienfo/scienfo_register_page.dart'; // Import the file where AuthenticationService is defined.
+import 'package:scienfo/scienfo_register_page.dart'; // Import the file where AuthenticationService
 
 class ExitIcon extends StatelessWidget {
   ExitIcon({
@@ -11,7 +11,7 @@ class ExitIcon extends StatelessWidget {
   Future<void> _showLogoutDialog(BuildContext context) async {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap a button to close dialog!
+      barrierDismissible: false, // user must tap a button to close dialog
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Logout Confirmation'),

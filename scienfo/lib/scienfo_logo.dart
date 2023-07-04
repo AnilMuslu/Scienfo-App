@@ -25,7 +25,7 @@ class ScienfoLogo extends StatelessWidget {
                 TextHeightBehavior(applyHeightToFirstAscent: false),
             softWrap: false,
           ),
-          SizedBox(height: 20), // You can adjust this value for spacing
+          SizedBox(height: 20), 
           // Adobe XD layer: 'Stem logo png' (shape)
           BlendMask(
             blendMode: BlendMode.srcOver,

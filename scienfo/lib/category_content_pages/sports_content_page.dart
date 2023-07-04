@@ -54,7 +54,6 @@ class _SportsContentPageState extends State<SportsContentPage> {
                 children: <Widget>[
                   PageView.builder(
                     scrollDirection: Axis.vertical,
-                    //physics: BouncingScrollPhysics(),
                     itemCount: imageData.length,
                     onPageChanged: (int index) {
                       Provider.of<CurrentImageIndex>(context, listen: false)

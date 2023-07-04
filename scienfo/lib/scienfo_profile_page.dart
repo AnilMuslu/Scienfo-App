@@ -60,7 +60,7 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
               Pin(size: 153.4, start: 40),
               child: UserImage(
                   uid: FirebaseAuth.instance.currentUser?.uid ??
-                      'defaultUid'), // Add the check here
+                      'defaultUid'), 
             ),
             Pinned.fromPins(
               Pin(start: 10.0, end: 10.0),
@@ -73,8 +73,8 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                       margin: EdgeInsets.only(
                           right: 10.0), // Spacing between the line and the text
                       height:
-                          2.0, // Adjust the height to control the thickness of the line
-                      color: Colors.black, // Color of the line
+                          2.0, 
+                      color: Colors.black, 
                     ),
                   ),
                   Text(
@@ -89,18 +89,18 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.only(
-                          left: 10.0), // Spacing between the line and the text
+                          left: 10.0), 
                       height:
-                          2.0, // Adjust the height to control the thickness of the line
-                      color: Colors.black, // Color of the line
+                          2.0, 
+                      color: Colors.black, 
                     ),
                   ),
                 ],
               ),
             ),
             Pinned.fromPins(
-              Pin(size: 50.0, end: 0.0), // increase the size as necessary
-              Pin(size: 50.0, start: 40.0), // increase the size as necessary
+              Pin(size: 50.0, end: 0.0), 
+              Pin(size: 50.0, start: 40.0), 
               child: ExitIcon(),
             ),
             Pinned.fromPins(
@@ -152,15 +152,15 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         padding:
-                            EdgeInsets.all(3), // adjust for desired padding
+                            EdgeInsets.all(3), // padding
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
                               color: Colors.black,
                               width:
-                                  1.5), // adjust for desired border color and width
+                                  1.5), // border color and width
                           borderRadius: BorderRadius.circular(
-                              4), // optional, for rounded corners
+                              4), // rounded corners
                         ),
                         child: DropdownButton<String>(
                           value: selectedUserType,
@@ -252,10 +252,10 @@ class _ScienfoProfilePageState extends State<ScienfoProfilePage> {
             ),
             Align(
               alignment: Alignment(
-                  0.0, 0.8), // adjust the alignment values as necessary
+                  0.0, 0.8), 
               child: Container(
-                width: 140.0, // adjust the size as necessary
-                height: 140.0, // adjust the size as necessary
+                width: 140.0, 
+                height: 140.0, 
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: const AssetImage('assets/images/scienfoLogo2.png'),

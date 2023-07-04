@@ -7,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scienfo/models/current_image_index.dart';
 import 'package:scienfo/scienfo_content_page1.dart';
 import 'package:scienfo/scienfo_register_page.dart';
-import 'gradient_background.dart'; // Your GradientBackground class
+import 'gradient_background.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: GradientBackground(
-          // Your GradientBackground widget
           child: Consumer<AuthenticationService>(
             builder: (context, authService, _) {
               if (authService.user == null) {
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
                 return ScienfoRegisterPage();
               } else {
                 print('User is logged in. Navigating to HomePage');
-                return ScienfoContentPage1(); // your homepage widget when user is logged in
+                return ScienfoContentPage1();
               }
             },
           ),

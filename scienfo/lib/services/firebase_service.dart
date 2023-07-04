@@ -140,38 +140,40 @@ class FirebaseService {
   }
 
   Stream<List<Map<String, dynamic>>> preSchoolImagesStream() {
-  return _firestore.collection('images')
-      .where('user_profile', isEqualTo: '#Pre-school')
-      .snapshots()
-      .map((QuerySnapshot querySnapshot) {
-        return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
-          return docSnapshot.data() as Map<String, dynamic>;
-        }).toList();
-      });
-}
+    return _firestore
+        .collection('images')
+        .where('user_profile', isEqualTo: '#Pre-school')
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
+        return docSnapshot.data() as Map<String, dynamic>;
+      }).toList();
+    });
+  }
 
-Stream<List<Map<String, dynamic>>> primarySchoolImagesStream() {
-  return _firestore.collection('images')
-      .where('user_profile', isEqualTo: '#Primary-school')
-      .snapshots()
-      .map((QuerySnapshot querySnapshot) {
-        return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
-          return docSnapshot.data() as Map<String, dynamic>;
-        }).toList();
-      });
-}
+  Stream<List<Map<String, dynamic>>> primarySchoolImagesStream() {
+    return _firestore
+        .collection('images')
+        .where('user_profile', isEqualTo: '#Primary-school')
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
+        return docSnapshot.data() as Map<String, dynamic>;
+      }).toList();
+    });
+  }
 
-Stream<List<Map<String, dynamic>>> middleSchoolImagesStream() {
-  return _firestore.collection('images')
-      .where('user_profile', isEqualTo: '#Middle-school')
-      .snapshots()
-      .map((QuerySnapshot querySnapshot) {
-        return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
-          return docSnapshot.data() as Map<String, dynamic>;
-        }).toList();
-      });
-}
-
+  Stream<List<Map<String, dynamic>>> middleSchoolImagesStream() {
+    return _firestore
+        .collection('images')
+        .where('user_profile', isEqualTo: '#Middle-school')
+        .snapshots()
+        .map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((DocumentSnapshot docSnapshot) {
+        return docSnapshot.data() as Map<String, dynamic>;
+      }).toList();
+    });
+  }
 
   Stream<List<Map<String, dynamic>>> getNutritionImagesStream() {
     return _firestore
@@ -231,64 +233,38 @@ Stream<List<Map<String, dynamic>>> middleSchoolImagesStream() {
   }
 
   Stream<List<Map<String, dynamic>>> getUserImagesStream(String? userType) {
-  if (userType == null) {
-    return getImageUrlsStream();
-  } else if (userType == '#Pre-school') {
-    return preSchoolImagesStream();
-  } else if (userType == '#Middle-school') {
-    return primarySchoolImagesStream();
-  } else if (userType == '#High-school') {
-    return middleSchoolImagesStream();
-  } else {
-    // if userType doesn't match any of the above, return the stream of all images
-    return getImageUrlsStream();
-  }
-}
-
-  /*
-  Future<List<String>> getFavorites(String userId) async {
-    DocumentSnapshot userDoc = await _firestore.collection('users').doc(userId).get();
-    return List<String>.from(userDoc['favorites'] ?? []);
-  }
-  
-
-  Future<void> updateFavorite(
-      String userId, String imageId, bool isFavorite) async {
-    CollectionReference users = _firestore.collection('users');
-    if (isFavorite) {
-      // If it's already a favorite, remove the imageId from the 'favorites' field
-      await users.doc(userId).update({
-        'favorites': FieldValue.arrayRemove([imageId])
-      });
+    if (userType == null) {
+      return getImageUrlsStream();
+    } else if (userType == '#Pre-school') {
+      return preSchoolImagesStream();
+    } else if (userType == '#Middle-school') {
+      return primarySchoolImagesStream();
+    } else if (userType == '#High-school') {
+      return middleSchoolImagesStream();
     } else {
-      // If it's not a favorite, add the imageId to the 'favorites' field
-      await users.doc(userId).update({
-        'favorites': FieldValue.arrayUnion([imageId])
-      });
+      // if userType doesn't match any of the above, return the stream of all images
+      return getImageUrlsStream();
     }
   }
-  */
 
   Stream<List<Map<String, dynamic>>> getFilteredImagesStream(String? userType) {
-  Query query = _firestore.collection("images");
+    Query query = _firestore.collection("images");
 
-  // If userType is not null, apply the filter
-  if (userType != null) {
-    query = query.where("user_profile", isEqualTo: userType);
+    // If userType is not null, apply the filter
+    if (userType != null) {
+      query = query.where("user_profile", isEqualTo: userType);
+    }
+
+    return query.snapshots().map((QuerySnapshot querySnapshot) {
+      return querySnapshot.docs.map((doc) {
+        return {
+          "url": doc["image_url"].toString(),
+          "id": doc.id,
+          "category": doc["category"],
+          "blog": doc["blog"],
+          "profile": doc["user_profile"]
+        };
+      }).toList();
+    });
   }
-
-  return query.snapshots().map((QuerySnapshot querySnapshot) {
-    return querySnapshot.docs.map((doc) {
-      return {
-        "url": doc["image_url"].toString(),
-        "id": doc.id,
-        "category": doc["category"],
-        "blog": doc["blog"],
-        "profile": doc["user_profile"]
-      };
-    }).toList();
-  });
-}
-
-
 }

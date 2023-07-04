@@ -28,24 +28,6 @@ class _ArtContentPageState extends State<ArtContentPage> {
 
   Set<String> favoriteImages = {};
 
-  /*
-  void initState() {
-    super.initState();
-
-    final user =
-        Provider.of<AuthenticationService>(context, listen: false).user;
-    if (user != null) {
-      firebaseService.getFavorites(user.uid).then((favorites) {
-        setState(() {
-          favoriteImages = Set<String>.from(favorites);
-        });
-      });
-    }
-
-    // ... Existing code ...
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Map<String, dynamic>>>(
@@ -72,13 +54,11 @@ class _ArtContentPageState extends State<ArtContentPage> {
                 children: <Widget>[
                   PageView.builder(
                     scrollDirection: Axis.vertical,
-                    //physics: BouncingScrollPhysics(),
                     itemCount: imageData.length,
                     onPageChanged: (int index) {
                       Provider.of<CurrentImageIndex>(context, listen: false)
                           .setIndex(index);
                     },
-
                     itemBuilder: (BuildContext context, int index) {
                       Map<String, dynamic> currentImage = imageData[index];
                       print("CURRENT IMAGE DATA: $currentImage");
