@@ -1,14 +1,13 @@
 # Scienfo App
  A mobile app for STEM education
 
-# STEM Eğitim Uygulaması
+# Profile - Based Mobile Application for STEM Content
 
-Bu proje, çocukların STEM (Bilim, Teknoloji, Mühendislik ve Matematik) eğitimine yönelik bir mobil uygulamadır. Uygulama, çocukların eğlenerek öğrenebilecekleri öğrenme materyalleri ve eğitici içerikler sunar.
+This project is a mobile application for children's STEM (Science, Technology, Education, Mathematics) education. The application offers learning materials and educational content that children can learn with fun.
 
-## Özellikler
+## Details
 
-- Uygulama, Flutter kullanılarak geliştirilmiştir.
-- Firebase Storage ve Firebase Firestore kullanılarak kullanıcı yönetimi ve veri depolama sağlanmıştır.
-- Kullanıcılar, uygulamaya kaydolarak kişiselleştirilmiş profiller oluşturabilir.
-- Uygulama, Dart programlama dili kullanılarak geliştirilmiştir ve kullanıcıların STEM becerilerini geliştirmelerine yardımcı olacak şekilde tasarlanmıştır.
-- Uygulamada bulunan etkinlikler ve içerikler, kategorilere ve profillere göre filtrelenerek kullanıcılara sunulur.
+- The application was developed using Flutter in Dart programming languages.
+- User management and data storage is provided using Firebase Storage and Firebase Firestore.
+- Users can create personalized profiles by registering with the application.
+- Activities and content in the application are filtered according to categories and profiles and presented to users.
